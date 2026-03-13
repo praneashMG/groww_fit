@@ -221,7 +221,7 @@
                     <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
                         <i class="fas fa-dumbbell text-sm transform -rotate-45"></i>
                     </div>
-                    <span class="text-lg font-black tracking-tight text-heading-theme hidden sm:block">GrowwFit</span>
+                    <span class="text-lg font-black tracking-tight text-heading-theme">GrowwFit</span>
                 </a>
                 
                 <div class="flex items-center gap-1 sm:gap-2">
@@ -288,11 +288,11 @@
         </div>
     </div>
 
-    <section class="min-h-screen flex items-center justify-center pt-[100px] pb-16 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/contact.jpg');">
+    <section class="h-[100dvh] w-full flex items-center justify-center pt-[80px] pb-6 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/contact.jpg');">
         <div class="absolute inset-0 bg-black/65 z-0"></div>
         
         <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
-            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md">Get In Touch</span>
+            <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-4 drop-shadow-md">Get In Touch</span>
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white leading-tight drop-shadow-lg">
                 Contact <span class="text-primary">GrowwFit</span>
             </h1>
@@ -306,52 +306,57 @@
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
                 
-                <div class="bg-card-theme p-8 md:p-10 rounded-3xl border border-theme shadow-lg">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Send a Message</span>
-                    <h2 class="text-3xl font-black text-heading-theme mb-8">Drop Us a Line</h2>
-                    
-                    <form class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-heading-theme font-bold text-sm mb-2">First Name</label>
-                                <input type="text" class="w-full px-4 py-3 rounded-xl bg-theme-main border border-theme text-body-theme focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-400 dark:placeholder-gray-500" placeholder="John">
+                <div class="bg-card-theme p-8 md:p-10 rounded-3xl border border-theme shadow-lg flex flex-col items-center text-center">
+                    <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Collaborate</span>
+                    <h2 class="text-3xl font-black text-heading-theme mb-8 w-full text-center">Work With GrowwFit</h2>
+                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
+                        We are always looking to expand our network. Whether you are a fitness creator, a potential corporate partner, or looking to join our team, we would love to hear from you.
+                    </p>
+
+                    <div class="space-y-6 w-full text-left">
+                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-5">
+                                <i class="fas fa-handshake"></i>
                             </div>
                             <div>
-                                <label class="block text-heading-theme font-bold text-sm mb-2">Last Name</label>
-                                <input type="text" class="w-full px-4 py-3 rounded-xl bg-theme-main border border-theme text-body-theme focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-400 dark:placeholder-gray-500" placeholder="Doe">
+                                <h4 class="font-bold text-heading-theme text-lg mb-1">Partnerships</h4>
+                                <p class="text-body-theme text-sm mb-2">Interested in brand collaborations?</p>
+                                <a href="mailto:partners@growwfit.com" class="text-primary font-bold hover:underline">partners@growwfit.com</a>
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-heading-theme font-bold text-sm mb-2">Email Address</label>
-                            <input type="email" class="w-full px-4 py-3 rounded-xl bg-theme-main border border-theme text-body-theme focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-400 dark:placeholder-gray-500" placeholder="john@example.com">
+
+                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl shrink-0 mr-5">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-heading-theme text-lg mb-1">Careers</h4>
+                                <p class="text-body-theme text-sm mb-2">Join our team of elite coaches and devs.</p>
+                                <a href="#" class="text-secondary font-bold hover:underline">View Open Roles</a>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-heading-theme font-bold text-sm mb-2">Subject</label>
-                            <select class="w-full px-4 py-3 rounded-xl bg-theme-main border border-theme text-body-theme focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
-                                <option>General Inquiry</option>
-                                <option>App / Technical Support</option>
-                                <option>Billing & Subscriptions</option>
-                                <option>Partnerships</option>
-                            </select>
+                        
+                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-xl shrink-0 mr-5">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-heading-theme text-lg mb-1">Press & Media</h4>
+                                <p class="text-body-theme text-sm mb-2">For interviews and media inquiries.</p>
+                                <a href="mailto:press@growwfit.com" class="text-blue-500 font-bold hover:underline">press@growwfit.com</a>
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-heading-theme font-bold text-sm mb-2">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl bg-theme-main border border-theme text-body-theme focus:outline-none focus:ring-2 focus:ring-primary placeholder-gray-400 dark:placeholder-gray-500" placeholder="How can we help you?"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-[0_10px_20px_rgba(230,57,70,0.3)] hover:bg-red-700 transition-colors hover:-translate-y-1">
-                            Send Message
-                        </button>
-                    </form>
+                    </div>
                 </div>
 
-                <div class="flex flex-col justify-center">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Direct Contact</span>
-                    <h2 class="text-3xl font-black text-heading-theme mb-8">Support Channels</h2>
-                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed">
+                <div class="flex flex-col justify-center items-center text-center">
+                    <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Direct Contact</span>
+                    <h2 class="text-3xl font-black text-heading-theme mb-8 w-full text-center">Support Channels</h2>
+                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
                         Need an immediate response? Reach out through any of our direct channels below. Our support team typically responds within 2 hours during normal business hours.
                     </p>
 
-                    <div class="space-y-6">
+                    <div class="space-y-6 w-full text-left">
                         <div class="flex items-start bg-card-theme p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
                             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-5">
                                 <i class="fas fa-envelope"></i>
@@ -401,14 +406,14 @@
                         <h3 class="text-white font-black text-2xl">Talk to an Expert</h3>
                     </div>
                 </div>
-                <div class="lg:w-3/5 p-8 md:p-12">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Level Up</span>
-                    <h2 class="text-3xl font-black text-heading-theme mb-4">Coach Consultation Booking</h2>
-                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed">
+                <div class="lg:w-3/5 p-8 md:p-12 flex flex-col items-center text-center">
+                    <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Level Up</span>
+                    <h2 class="text-3xl font-black text-heading-theme mb-4 w-full">Coach Consultation Booking</h2>
+                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
                         Not sure which program is right for you? Book a free 15-minute discovery call with one of our certified trainers. We'll discuss your goals, injury history, and daily routine to map out the perfect starting point.
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="grid grid-cols-2 gap-4 mb-8 w-full max-w-md mx-auto text-left">
                         <div class="flex items-center text-heading-theme font-bold text-sm">
                             <i class="fas fa-video text-primary mr-3 text-lg"></i> Zoom Video Call
                         </div>
@@ -423,7 +428,7 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="inline-block bg-primary text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1">
+                    <a href="#" class="inline-block bg-primary text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1 mx-auto">
                         <i class="far fa-calendar-alt mr-2"></i> Pick a Date & Time
                     </a>
                 </div>
@@ -434,14 +439,14 @@
     <section class="py-16 md:py-24 bg-theme-alt">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div>
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Headquarters</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-heading-theme mb-6">Visit Our Office</h2>
-                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed">
+                <div class="flex flex-col items-center text-center">
+                    <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Headquarters</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-heading-theme mb-6 w-full">Visit Our Office</h2>
+                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
                         While our app reaches users globally, our central hub and content production studio is located in the heart of New York. Feel free to drop by if you have business inquiries.
                     </p>
 
-                    <div class="flex items-start mb-8">
+                    <div class="flex items-start mb-8 text-left w-full max-w-md">
                         <div class="w-12 h-12 bg-card-theme border border-theme rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-4 shadow-sm">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
@@ -455,7 +460,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
+                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm w-full max-w-md text-left">
                         <h4 class="font-bold text-heading-theme text-lg mb-4 flex items-center">
                             <i class="far fa-clock text-primary mr-2"></i> Hours of Operation
                         </h4>
@@ -504,9 +509,9 @@
     </section>
 
     <section class="py-16 md:py-24 bg-theme-main border-y border-theme">
-        <div class="container mx-auto px-4 text-center">
-            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Connect With Us</span>
-            <h2 class="text-3xl md:text-4xl font-black text-heading-theme mb-10">Follow Our Journey</h2>
+        <div class="container mx-auto px-4 text-center flex flex-col items-center">
+            <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Connect With Us</span>
+            <h2 class="text-3xl md:text-4xl font-black text-heading-theme mb-10 w-full text-center">Follow Our Journey</h2>
             
             <div class="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
                 <a href="#" class="flex flex-col items-center justify-center w-32 h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
