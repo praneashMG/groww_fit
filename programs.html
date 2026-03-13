@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GrowwFit - Training Programs. Fat loss, muscle building, strength training, and beginner workout plans.">
+    <title>GrowwFit - Programs</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946', /* Power Red */
+                        secondary: '#F59E0B', /* Gold Energy */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-color: #E63946; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #FFFFFF;
+            --nav-text: #1F2937;
+            --border-color: #E2E8F0;
+            --dropdown-bg: #FFFFFF;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #E63946;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;   
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --nav-text: #F8FAFC;
+            --border-color: #334155;
+            --dropdown-bg: #111827;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p { color: var(--text-main); }
+        
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+        
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+
+        /* Navbar Styles */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .nav-link {
+            color: var(--nav-text);
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .nav-link:hover { color: var(--primary-color); }
+        .nav-link.active { color: var(--primary-color); font-weight: 700; }
+        
+        .navbar-brand-text { color: var(--nav-text); }
+
+        /* Nav Icon Buttons */
+        .nav-icon-btn { background-color: rgba(156, 163, 175, 0.2); color: var(--nav-text); }
+        [data-theme="dark"] .nav-icon-btn { background-color: rgba(255, 255, 255, 0.1); }
+
+        /* Dropdowns */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; background-color: var(--dropdown-bg);
+            border: 1px solid var(--border-color); border-radius: 8px; min-width: 180px;
+            opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease;
+            z-index: 1000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item {
+            display: block; padding: 12px 20px; color: var(--nav-text); transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color); font-size: 0.9rem;
+        }
+        .dropdown-item:hover { background-color: rgba(230, 57, 70, 0.1); color: var(--primary-color); padding-left: 25px; }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        
+        /* Mobile Menu */
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; background-color: var(--bg-color); }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 20px; background-color: var(--bg-alt); border-radius: 8px; }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        
+        #mobile-menu-btn:active { transform: scale(0.9); }
+        
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex !important; }
+            .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar-container py-3 fixed top-0 w-full z-[1000]">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                
+                <a href="index.html" class="flex items-center gap-2 no-underline transition-transform duration-300 hover:scale-105">
+                    <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                        <i class="fas fa-dumbbell text-sm md:text-base transform -rotate-45"></i>
+                    </div>
+                    <div class="text-xl md:text-2xl font-black tracking-tight navbar-brand-text">GrowwFit</div>
+                </a>
+                
+                <div class="desktop-nav items-center space-x-1 lg:space-x-2">
+                    <div class="dropdown" id="home-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                            Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="programs.html" class="nav-link active">Programs</a>
+                    <a href="nutrition.html" class="nav-link">Nutrition</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+
+                    <div class="dropdown" id="dashboard-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">
+                            Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> User</a>
+                            <a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3">
+                    <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-theme-toggle-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                    </button>
+                    <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="nav-icon-btn text-xl cursor-pointer p-2 rounded-lg w-10 h-10 flex items-center justify-center mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-full z-[9999] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8 border-b border-theme pb-4">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                        <i class="fas fa-dumbbell text-sm transform -rotate-45"></i>
+                    </div>
+                    <span class="text-lg font-black tracking-tight text-heading-theme hidden sm:block">GrowwFit</span>
+                </a>
+                
+                <div class="flex items-center gap-1 sm:gap-2">
+                    <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-theme-toggle" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
+                    </button>
+                    <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
+                        <i class="fas fa-language text-sm"></i>
+                    </button>
+                    <a href="login.html" class="bg-primary text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-red-700" title="Login">
+                        <i class="fas fa-user text-sm"></i>
+                    </a>
+                    <button id="close-mobile-menu" class="text-heading-theme text-2xl ml-1 transition-transform active:scale-90">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="space-y-1">
+                <div>
+                    <button id="mobile-home-link" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('home-mobile')">
+                        <span><i class="fas fa-home mr-2 text-primary"></i> Home</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-body-theme"></i>
+                    </button>
+                    <div id="home-mobile" class="mobile-dropdown-content">
+                        <a href="index.html" class="block text-body-theme py-2.5 transition-all duration-300 hover:text-primary hover:pl-2.5 font-medium">Home 1</a>
+                        <a href="home2.html" class="block text-body-theme py-2.5 transition-all duration-300 hover:text-primary hover:pl-2.5 font-medium">Home 2</a>
+                    </div>
+                </div>
+
+                <a href="about.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-info-circle mr-2 text-primary"></i> About</span>
+                </a>
+                <a href="programs.html" class="flex items-center justify-between w-full text-primary text-lg font-bold py-3 no-underline">
+                    <span><i class="fas fa-dumbbell mr-2 text-primary"></i> Programs</span>
+                </a>
+                <a href="nutrition.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-apple-alt mr-2 text-primary"></i> Nutrition</span>
+                </a>
+                <a href="blog.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-book-open mr-2 text-primary"></i> Blog</span>
+                </a>
+                <a href="pricing.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-tags mr-2 text-primary"></i> Pricing</span>
+                </a>
+                <a href="faq.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-question-circle mr-2 text-primary"></i> FAQ</span>
+                </a>
+                <a href="contact.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
+                    <span><i class="fas fa-envelope mr-2 text-primary"></i> Contact</span>
+                </a>
+                
+                <div>
+                    <button class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('dashboard-mobile')">
+                        <span><i class="fas fa-tachometer-alt mr-2 text-primary"></i> Dashboard</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-body-theme"></i>
+                    </button>
+                    <div id="dashboard-mobile" class="mobile-dropdown-content">
+                        <a href="user-dashboard.html" class="block text-body-theme py-2.5 transition-all duration-300 hover:text-primary hover:pl-2.5 font-medium">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-body-theme py-2.5 transition-all duration-300 hover:text-primary hover:pl-2.5 font-medium">Admin Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="min-h-screen flex items-center justify-center pt-[100px] pb-16 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/programs.jpg');">
+        <div class="absolute inset-0 bg-black/65 z-0"></div>
+        
+        <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md">World-Class Routines</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-white leading-tight drop-shadow-lg">
+                Find Your Perfect <br class="hidden md:block" /> <span class="text-primary">Program</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium">
+                From complete beginners to advanced lifters, our science-backed blueprints are designed to eliminate the guesswork and guarantee your desired results.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-alt border-y border-theme">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-theme bg-card-theme">
+                        <img src="Images/Fat Loss .jpg" alt="Fat Loss Training" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Shred & Tone</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-6 text-heading-theme">Fat Loss Program</h2>
+                    <p class="text-body-theme opacity-80 mb-6 text-lg leading-relaxed">
+                        A high-intensity, metabolic conditioning approach designed to maximize calorie burn during and after your workouts. Paired with a precise caloric deficit macro plan to shed stubborn body fat while preserving lean muscle mass.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-calendar-check text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">4 Days / Week</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Flexible Schedule</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-clock text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">45-60 Mins</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Per Session</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-layer-group text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">HIIT + Cardio</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Workout Type</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-signal text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Intermediate</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Experience Level</p>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1">
+                        Select This Program
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-main border-b border-theme">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="order-1 lg:order-1">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Hypertrophy Max</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-6 text-heading-theme">Muscle Building Program</h2>
+                    <p class="text-body-theme opacity-80 mb-6 text-lg leading-relaxed">
+                        Built on the proven principles of progressive overload and mechanical tension. This split isolates specific muscle groups to push them to near failure, triggering maximum hypertrophic growth, supported by a caloric surplus.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-calendar-check text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">5 Days / Week</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Bro Split / PPL</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-clock text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">60-75 Mins</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Per Session</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-dumbbell text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Volume Focus</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">8-12 Rep Range</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-signal text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Advanced</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Experience Level</p>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1">
+                        Select This Program
+                    </a>
+                </div>
+
+                <div class="relative order-2 lg:order-2">
+                    <div class="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-theme bg-card-theme">
+                        <img src="Images/Muscle Building.jpg" alt="Muscle Building Training" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-alt border-b border-theme">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-theme bg-card-theme">
+                        <img src="Images/Strength Training.jpg" alt="Strength Training" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Raw Power</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-6 text-heading-theme">Strength Training Program</h2>
+                    <p class="text-body-theme opacity-80 mb-6 text-lg leading-relaxed">
+                        A true powerlifting blueprint focused strictly on the big three lifts: Squat, Bench Press, and Deadlift. Utilizes heavy compound movements with lower rep ranges to trigger immense central nervous system adaptations and raw force output.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-calendar-check text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">3-4 Days / Week</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">High Rest/Recovery</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-clock text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">75-90 Mins</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Per Session</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-weight-hanging text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Power Focus</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">1-5 Rep Range</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-signal text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Advanced</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Experience Level</p>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1">
+                        Select This Program
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-main border-b border-theme">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="order-1 lg:order-1">
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">Foundation</span>
+                    <h2 class="text-3xl md:text-4xl font-black mb-6 text-heading-theme">Beginner Program</h2>
+                    <p class="text-body-theme opacity-80 mb-6 text-lg leading-relaxed">
+                        Never stepped foot in a gym? No problem. This entry-level plan focuses on teaching perfect form, building joint stability, and creating a sustainable habit without overwhelming your body.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-calendar-check text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">3 Days / Week</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Full Body Splits</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="far fa-clock text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">30-45 Mins</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Per Session</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-shield-alt text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Safety Focus</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Machine & Dumbbells</p>
+                        </div>
+                        <div class="bg-card-theme p-4 rounded-lg border border-theme">
+                            <i class="fas fa-signal text-primary mb-2 text-xl"></i>
+                            <h4 class="font-bold text-heading-theme text-sm">Novice</h4>
+                            <p class="text-xs text-body-theme opacity-80 mt-1">Experience Level</p>
+                        </div>
+                    </div>
+                    
+                    <a href="login.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1">
+                        Select This Program
+                    </a>
+                </div>
+
+                <div class="relative order-2 lg:order-2">
+                    <div class="w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-theme bg-card-theme">
+                        <img src="Images/Beginner .jpg" alt="Beginner Training" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-alt border-t border-theme">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Why Our Programs Work</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 mt-2 text-heading-theme">The GrowwFit Standard</h2>
+                <p class="text-base md:text-xl opacity-80 text-body-theme">
+                    We ensure every user has the tools, knowledge, and structure needed to guarantee progression.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm text-center hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mx-auto mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="font-bold text-heading-theme mb-2 text-lg">Video Tutorials</h3>
+                    <p class="text-sm text-body-theme opacity-80">Every single exercise comes with an HD video demonstrating perfect form to prevent injury.</p>
+                </div>
+                
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm text-center hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mx-auto mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="font-bold text-heading-theme mb-2 text-lg">Progressive Overload</h3>
+                    <p class="text-sm text-body-theme opacity-80">The app mathematically tells you when to increase weight so you never stall or plateau.</p>
+                </div>
+
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm text-center hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mx-auto mb-4">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-heading-theme mb-2 text-lg">App Integration</h3>
+                    <p class="text-sm text-body-theme opacity-80">Track workouts, macros, sleep, and measurements seamlessly in one clean dashboard.</p>
+                </div>
+
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm text-center hover:-translate-y-1 transition-transform">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl mx-auto mb-4">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="font-bold text-heading-theme mb-2 text-lg">24/7 Support</h3>
+                    <p class="text-sm text-body-theme opacity-80">Stuck on a movement? DM our coaches directly inside the app for form checks and advice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-theme-main border-y border-theme relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block">Take Action</span>
+            <h2 class="text-4xl md:text-5xl font-black mb-6 text-heading-theme">Ready to Commit?</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium text-body-theme">
+                The perfect plan is waiting for you. Join the GrowwFit community today and unlock the tools you need to build the body you deserve.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="login.html" class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(230,57,70,0.3)] flex items-center uppercase tracking-wide">
+                    <i class="fas fa-bolt mr-2"></i> Start Your 7-Day Free Trial
+                </a>
+            </div>
+            
+            <div class="mt-8 flex items-center justify-center gap-3 text-body-theme opacity-80 font-medium text-sm">
+                <span><i class="fas fa-check text-primary mr-1"></i> No Credit Card Required</span>
+                <span class="hidden sm:inline">•</span>
+                <span><i class="fas fa-check text-primary mr-1"></i> Cancel Anytime</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0F172A] text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6 no-underline">
+                        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                            <i class="fas fa-dumbbell text-base transform -rotate-45"></i>
+                        </div>
+                        <span class="text-xl md:text-2xl font-black tracking-tight text-white block">GrowwFit</span>
+                    </a>
+                    <p class="opacity-80 mb-6 text-sm md:text-base text-gray-300">
+                        Empowering individuals to reach their ultimate fitness goals through science-backed programs and intuitive tracking.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Quick Links</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="index.html" class="text-white hover:text-primary transition font-medium">Home</a></li>
+                        <li><a href="programs.html" class="text-white hover:text-primary transition font-medium">Programs</a></li>
+                        <li><a href="#coaches" class="text-white hover:text-primary transition font-medium">Coaches</a></li>
+                        <li><a href="contact.html" class="text-white hover:text-primary transition font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Support</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="faq.html" class="text-gray-300 hover:text-primary transition">FAQs</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-primary transition">Community Guidelines</a></li>
+                        <li><a href="nutrition.html" class="text-gray-300 hover:text-primary transition">Nutrition Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">App Download</h3>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Get the GrowwFit app on your device.</p>
+                    <div class="space-y-3">
+                        <a href="#" class="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/10 hover:bg-white/20 transition">
+                            <i class="fab fa-apple text-2xl text-white"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-300 leading-tight">Download on the</p>
+                                <p class="text-sm font-bold text-white leading-tight">App Store</p>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/10 hover:bg-white/20 transition">
+                            <i class="fab fa-google-play text-2xl text-white"></i>
+                            <div>
+                                <p class="text-[10px] text-gray-300 leading-tight">GET IT ON</p>
+                                <p class="text-sm font-bold text-white leading-tight">Google Play</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-white">
+                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 GrowwFit. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="#" class="hover:text-primary transition text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary transition text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-primary text-white rounded-full shadow-lg hidden hover:bg-secondary transition z-50 border-2 border-white/20">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Toggle Logic
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        
+        // Initialize Theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            if (desktopThemeIcon) {
+                desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+            if (mobileThemeIcon) {
+                mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun text-sm' : 'fas fa-moon text-sm';
+            }
+        }
+
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Desktop RTL Toggle
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        
+        htmlElement.setAttribute('dir', currentDir);
+        
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+        }
+        
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // Dropdowns & Menu
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if(d.id !== id) d.classList.remove('active');
+            });
+            document.getElementById(id).classList.toggle('active');
+        }
+        
+        function toggleMobileDropdown(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+        }
+        if(closeMobileMenu) {
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
+
+        // Active State Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname.split('/').pop() || 'programs.html';
+            
+            document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath || (currentPath === '' && href === 'programs.html')) {
+                    link.classList.add('active');
+                    const parent = link.closest('.dropdown');
+                    if(parent) parent.querySelector('.nav-link').classList.add('active');
+                }
+            });
+        });
+
+        // Scroll Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300);
+        });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 1280) mobileMenu.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

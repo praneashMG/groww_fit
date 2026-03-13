@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GrowwFit - Admin Dashboard. Manage clients, programs, and platform analytics.">
+    <title>GrowwFit - Admin Dashboard</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946', /* Power Red */
+                        secondary: '#F59E0B', /* Gold Energy */
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-color: #E63946; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #FFFFFF;
+            --nav-text: #1F2937;
+            --border-color: #E2E8F0;
+            --sidebar-bg: #FFFFFF;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #E63946;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;   
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --nav-text: #F8FAFC;
+            --border-color: #334155;
+            --sidebar-bg: #0F172A;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-alt);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow: hidden; 
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p { color: var(--text-main); }
+        
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+        
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+
+        /* Navbar Styles */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .navbar-brand-text { color: var(--nav-text); }
+
+        /* Nav Icon Buttons */
+        .nav-icon-btn { background-color: rgba(156, 163, 175, 0.2); color: var(--nav-text); }
+        [data-theme="dark"] .nav-icon-btn { background-color: rgba(255, 255, 255, 0.1); }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .sidebar-link {
+            color: var(--nav-text);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: rgba(230, 57, 70, 0.1);
+            color: var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+        }
+        
+        /* Mobile Sidebar Overlay */
+        .sidebar-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen">
+
+    <nav id="navbar" class="navbar-container py-3 h-[72px] fixed top-0 w-full z-[1000] flex items-center justify-between px-4 lg:px-8">
+        <div class="flex items-center gap-2 sm:gap-4">
+            <button id="sidebar-toggle" class="lg:hidden text-heading-theme text-xl p-1 sm:p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors shrink-0">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <a href="index.html" class="flex items-center gap-2 no-underline transition-transform duration-300 hover:scale-105">
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                    <i class="fas fa-dumbbell text-sm md:text-base transform -rotate-45"></i>
+                </div>
+                <div class="text-lg sm:text-xl md:text-2xl font-black tracking-tight navbar-brand-text">GrowwFit </div>
+            </a>
+        </div>
+        
+        <div class="flex items-center gap-1 sm:gap-2 lg:gap-4">
+            <button class="w-8 h-8 sm:w-10 sm:h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 cursor-pointer" id="theme-toggle-btn" title="Toggle Dark/Light Mode">
+                <i class="fas fa-moon text-sm sm:text-base" id="theme-icon"></i>
+            </button>
+            <button class="w-8 h-8 sm:w-10 sm:h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 cursor-pointer" id="rtl-toggle-btn" title="Toggle RTL">
+                <i class="fas fa-language text-sm sm:text-base"></i>
+            </button>
+            <a href="login.html" class="bg-primary text-white px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 shadow-md flex items-center gap-2 border border-transparent ml-1 sm:ml-0">
+                <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="flex flex-1 pt-[72px] h-full overflow-hidden">
+        
+        <div id="sidebar-overlay" class="sidebar-overlay fixed inset-0 z-40 hidden lg:hidden"></div>
+        
+        <aside id="sidebar" class="sidebar fixed lg:static inset-y-0 left-0 z-50 w-64 transform -translate-x-full lg:translate-x-0 h-full flex flex-col pt-[72px] lg:pt-0 pb-6 overflow-y-auto">
+            
+            <div class="p-6 border-b border-theme flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-black text-xl shadow-sm">
+                    CA
+                </div>
+                <div>
+                    <h4 class="font-bold text-heading-theme text-sm">Coach Alex</h4>
+                    <p class="text-xs text-primary font-bold">Head Trainer</p>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="#" class="sidebar-link active block px-4 py-3 rounded-xl font-bold text-sm">
+                    Dashboard
+                </a>
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
+                    Client Management
+                </a>
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
+                    Workout Builder
+                </a>
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
+                    Nutrition Plans
+                </a>
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm relative">
+                    Messages
+                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded-full">3</span>
+                </a>
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
+                    Revenue Analytics
+                </a>
+            </nav>
+
+            <div class="px-4 mt-auto">
+                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
+                    Platform Settings
+                </a>
+            </div>
+        </aside>
+
+        <main class="flex-1 h-full overflow-y-auto p-4 lg:p-8 bg-theme-alt relative w-full">
+            <div class="max-w-7xl mx-auto space-y-8 pb-10">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-theme-main p-6 rounded-2xl border border-theme shadow-sm">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-black text-heading-theme">Platform Overview 📊</h1>
+                        <p class="text-body-theme text-sm mt-1">Here is what is happening across your fitness ecosystem today.</p>
+                    </div>
+                    <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md shrink-0">
+                        Create New Program
+                    </button>
+                </div>
+
+                <div>
+                    <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Key Metrics</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        
+                        <div class="bg-card-theme p-5 rounded-2xl border border-theme shadow-sm hover:-translate-y-1 transition-transform">
+                            <p class="text-xs text-body-theme font-bold uppercase tracking-wider">Total Clients</p>
+                            <h3 class="text-xl font-black text-heading-theme mt-1">1,248</h3>
+                        </div>
+
+                        <div class="bg-card-theme p-5 rounded-2xl border border-theme shadow-sm hover:-translate-y-1 transition-transform">
+                            <p class="text-xs text-body-theme font-bold uppercase tracking-wider">Active Subs</p>
+                            <h3 class="text-xl font-black text-heading-theme mt-1">892</h3>
+                        </div>
+
+                        <div class="bg-card-theme p-5 rounded-2xl border border-theme shadow-sm hover:-translate-y-1 transition-transform">
+                            <p class="text-xs text-body-theme font-bold uppercase tracking-wider">MRR</p>
+                            <h3 class="text-xl font-black text-heading-theme mt-1">$18.5k</h3>
+                        </div>
+
+                        <div class="bg-card-theme p-5 rounded-2xl border border-theme shadow-sm hover:-translate-y-1 transition-transform relative">
+                            <div class="absolute top-4 right-4 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+                            <p class="text-xs text-body-theme font-bold uppercase tracking-wider">Unread Msgs</p>
+                            <h3 class="text-xl font-black text-heading-theme mt-1">14</h3>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <div>
+                        <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Client Alerts</span>
+                        <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-heading-theme">Recent Check-ins</h3>
+                                <a href="#" class="text-sm font-bold text-body-theme hover:text-primary transition-colors">View All</a>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between border-b border-theme pb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-secondary/20 text-secondary rounded-full flex items-center justify-center font-bold text-xs shrink-0">MR</div>
+                                        <div>
+                                            <p class="font-bold text-heading-theme text-sm">Mia Rodriguez</p>
+                                            <p class="text-xs text-body-theme">Logged a new PR: Bench Press 135lb</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-primary">10m ago</span>
+                                </div>
+                                
+                                <div class="flex items-center justify-between border-b border-theme pb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-green-500/20 text-green-600 rounded-full flex items-center justify-center font-bold text-xs shrink-0">JD</div>
+                                        <div>
+                                            <p class="font-bold text-heading-theme text-sm">Jake Davis</p>
+                                            <p class="text-xs text-body-theme">Completed Week 4: Shred & Tone</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-primary">1h ago</span>
+                                </div>
+
+                                <div class="flex items-center justify-between pb-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-blue-500/20 text-blue-600 rounded-full flex items-center justify-center font-bold text-xs shrink-0">AL</div>
+                                        <div>
+                                            <p class="font-bold text-heading-theme text-sm">Amanda Lee</p>
+                                            <p class="text-xs text-body-theme">Updated weekly measurements (-1.2 lbs)</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-primary">3h ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Schedule</span>
+                        <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-lg font-bold text-heading-theme">Upcoming Calls</h3>
+                                <button class="text-primary text-sm font-bold hover:underline">Sync Calendar</button>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex items-center justify-between hover:border-primary transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0 border border-primary/20">
+                                            <div class="text-center leading-none">
+                                                <span class="block text-[10px] uppercase font-bold">Today</span>
+                                                <span class="block text-lg font-black mt-0.5">2:30</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-heading-theme text-sm">Onboarding Call</h4>
+                                            <p class="text-xs text-body-theme mt-0.5">Client: Marcus Doe</p>
+                                        </div>
+                                    </div>
+                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors">
+                                        Join Call
+                                    </button>
+                                </div>
+
+                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex items-center justify-between hover:border-primary transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 bg-theme-alt text-body-theme rounded-lg flex items-center justify-center shrink-0 border border-theme">
+                                            <div class="text-center leading-none">
+                                                <span class="block text-[10px] uppercase font-bold">Today</span>
+                                                <span class="block text-lg font-black mt-0.5">4:00</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-heading-theme text-sm">Form Check Review</h4>
+                                            <p class="text-xs text-body-theme mt-0.5">Client: Sarah Jenkins</p>
+                                        </div>
+                                    </div>
+                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors">
+                                        Join Call
+                                    </button>
+                                </div>
+                                
+                                <a href="#" class="block text-center text-sm font-bold text-primary mt-2 hover:underline">View Full Schedule</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Management</span>
+                    <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6">
+                        <h3 class="text-lg font-bold text-heading-theme mb-6">Quick Actions</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <button class="flex flex-col items-center justify-center p-6 rounded-xl bg-theme-main border border-theme hover:border-primary hover:bg-primary/5 transition-colors group">
+                                <span class="font-bold text-sm text-heading-theme group-hover:text-primary transition-colors">Add Client</span>
+                            </button>
+                            
+                            <button class="flex flex-col items-center justify-center p-6 rounded-xl bg-theme-main border border-theme hover:border-secondary hover:bg-secondary/5 transition-colors group">
+                                <span class="font-bold text-sm text-heading-theme group-hover:text-secondary transition-colors">Create Diet</span>
+                            </button>
+                            
+                            <button class="flex flex-col items-center justify-center p-6 rounded-xl bg-theme-main border border-theme hover:border-blue-500 hover:bg-blue-500/5 transition-colors group">
+                                <span class="font-bold text-sm text-heading-theme group-hover:text-blue-500 transition-colors">Send Announcement</span>
+                            </button>
+                            
+                            <button class="flex flex-col items-center justify-center p-6 rounded-xl bg-theme-main border border-theme hover:border-green-500 hover:bg-green-500/5 transition-colors group">
+                                <span class="font-bold text-sm text-heading-theme group-hover:text-green-500 transition-colors">Export Reports</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // -- Theme Toggle Logic --
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+        
+        // Initialize Theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            if (themeIcon) {
+                themeIcon.className = newTheme === 'dark' ? 'fas fa-sun text-sm sm:text-base' : 'fas fa-moon text-sm sm:text-base';
+            }
+        }
+
+        if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+        
+        // -- RTL Toggle Logic --
+        const rtlToggleBtn = document.getElementById('rtl-toggle-btn');
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        
+        htmlElement.setAttribute('dir', currentDir);
+        
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+        }
+        
+        if (rtlToggleBtn) rtlToggleBtn.addEventListener('click', toggleRTL);
+
+        // -- Mobile Sidebar Logic --
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        if(sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+        if(sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Handle resizing window to clean up mobile classes
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 1024) { // lg breakpoint
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+        
+        // Initial setup for sidebar on load based on width
+        if(window.innerWidth < 1024) {
+            sidebar.classList.add('-translate-x-full');
+        }
+    </script>
+</body>
+</html>

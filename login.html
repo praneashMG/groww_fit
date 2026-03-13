@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GrowwFit</title>
+    <meta name="description" content="Login to GrowwFit - Start your fitness journey today.">
+
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#E63946', /* Power Red */
+                        secondary: '#F59E0B', /* Gold Energy */
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.4s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer components {
+            .form-input {
+                @apply w-full pl-9 pr-3 py-2.5 border border-gray-300 bg-white text-[#0F172A] rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-[#1E293B] dark:text-[#F8FAFC] dark:border-gray-700 text-sm;
+            }
+            .social-btn {
+                @apply w-full flex items-center justify-center gap-2 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-300;
+            }
+        }
+    </style>
+    
+    <style>
+        :root {
+            --bg-color: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #FFFFFF;
+            --border-color: #E2E8F0;
+        }
+        
+        [data-theme="dark"] {
+            --bg-color: #020617;
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --border-color: #334155;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+        
+        .nav-icon-btn { 
+            background-color: rgba(156, 163, 175, 0.2); 
+            color: var(--text-heading); 
+        }
+        [data-theme="dark"] .nav-icon-btn { 
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-[var(--navbar-bg)] shadow-sm relative z-50 h-20 border-b border-[var(--border-color)] transition-colors duration-300">
+        <div class="max-w-[1400px] mx-auto px-6 h-full flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-2 no-underline transition-transform duration-300 hover:scale-105">
+                <div class="w-10 h-10 bg-[#E63946] rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                    <i class="fas fa-dumbbell text-base transform -rotate-45"></i>
+                </div>
+                <div>
+                    <div class="text-xl md:text-2xl font-black tracking-tight text-[var(--text-heading)] leading-none">GrowwFit</div>
+                    
+                </div>
+            </a>
+
+            <div class="flex items-center gap-2">
+                <button id="themeToggle" class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle Dark Mode">
+                    <i class="fas fa-sun text-sm hidden dark:inline-block"></i>
+                    <i class="fas fa-moon text-sm dark:hidden"></i>
+                </button>
+                <button id="rtlToggle" class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle RTL">
+                    <i class="fas fa-language text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="flex items-center justify-center px-4 h-[calc(100vh-80px)] relative overflow-y-auto py-8">
+        
+        <div class="absolute top-10 left-10 w-64 h-64 bg-[#E63946]/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-[360px] w-full bg-[var(--card-bg)] rounded-3xl shadow-xl border border-[var(--border-color)] animate-fade-in-up p-6 md:p-7 relative z-10 my-auto">
+            
+            <div class="mb-5 text-center">
+                <h2 id="authTitle" class="text-xl font-black text-[var(--text-heading)] mb-1">Welcome Back</h2>
+                <p id="authSubtitle" class="text-[var(--text-main)] opacity-80 text-xs">Sign in to access your workout plan</p>
+            </div>
+
+            <div id="loginForm" class="space-y-4">
+                <form id="loginFormElement" class="space-y-3">
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Email Address</label>
+                            <div class="relative">
+                                <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <input type="email" placeholder="david@example.com" required class="form-input" id="loginEmail">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Password</label>
+                            <div class="relative">
+                                <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <input type="password" id="loginPassword" placeholder="Enter password" required class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-xs font-medium py-1">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="w-3.5 h-3.5 text-[#E63946] rounded focus:ring-[#E63946] border-gray-300 bg-gray-50 dark:bg-black/20 dark:border-gray-600">
+                            <span class="text-[var(--text-main)] text-[11px]">Remember me</span>
+                        </label>
+                        <a href="#" class="text-[#E63946] hover:text-red-700 font-bold transition-colors text-[11px]" onclick="showPasswordReset()">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 mt-1 rounded-xl font-bold text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="loginButton">
+                        Login Securely
+                    </button>
+                </form>
+
+                <div class="relative flex items-center py-1">
+                    <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                    <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or continue with</span>
+                    <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                </div>
+
+                <button class="social-btn">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                    Google
+                </button>
+
+                <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
+                    Ready to start your journey? 
+                    <a href="#" onclick="toggleAuthMode('signup')" class="text-[#E63946] hover:text-red-700 font-bold transition-colors ml-1">Sign Up</a>
+                </p>
+            </div>
+
+            <div id="signupForm" class="space-y-4 hidden">
+                <form id="signupFormElement" class="space-y-3">
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">First Name</label>
+                            <div class="relative">
+                                <i class="fas fa-user absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <input type="text" placeholder="David" required class="form-input" id="firstName">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Last Name</label>
+                            <div class="relative">
+                                <input type="text" placeholder="Miller" required class="form-input pl-3" id="lastName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Email Address</label>
+                        <div class="relative">
+                            <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                            <input type="email" placeholder="david@example.com" required class="form-input" id="signupEmail">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Password</label>
+                        <div class="relative">
+                            <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                            <input type="password" id="signupPassword" placeholder="Create strong password" required class="form-input">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 mt-2 rounded-xl font-bold text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="signupButton">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="relative flex items-center py-1">
+                    <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                    <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or sign up with</span>
+                    <div class="flex-grow border-t border-[var(--border-color)]"></div>
+                </div>
+
+                <button class="social-btn">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                    Google
+                </button>
+
+                <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
+                    Already a member? 
+                    <a href="#" onclick="toggleAuthMode('login')" class="text-[#E63946] hover:text-red-700 font-bold transition-colors ml-1">Log In</a>
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="passwordResetModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden p-4">
+        <div class="bg-[var(--card-bg)] rounded-2xl p-7 max-w-[340px] w-full shadow-2xl transform transition-all duration-300 scale-95 border border-[var(--border-color)] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-[#E63946]"></div>
+            
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-black text-[var(--text-heading)]">Reset Password</h3>
+                <button onclick="closePasswordReset()" class="text-gray-400 hover:text-[#E63946] transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            
+            <p class="text-[var(--text-main)] opacity-80 mb-5 text-xs leading-relaxed">
+                Enter your email address associated with your account and we'll send you a link to reset your password.
+            </p>
+            
+            <div class="space-y-4">
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="email" placeholder="david@example.com" class="form-input" id="resetEmail">
+                </div>
+                <button onclick="sendResetLink(event)" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 rounded-xl font-bold transition-all duration-300 text-sm shadow-md">
+                    Send Reset Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Theme Logic
+        const themeToggle = document.getElementById("themeToggle");
+        const htmlElement = document.documentElement;
+
+        function updateThemeIcon() {
+            const isDark = htmlElement.classList.contains('dark');
+            const sunIcon = themeToggle.querySelector('.fa-sun');
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            }
+        }
+
+        function toggleDarkMode() {
+            htmlElement.classList.toggle('dark');
+            const isDark = htmlElement.classList.contains('dark');
+            htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+        
+        if (themeToggle) themeToggle.addEventListener("click", toggleDarkMode);
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            htmlElement.classList.add("dark");
+            htmlElement.setAttribute('data-theme', 'dark');
+        } else {
+            htmlElement.setAttribute('data-theme', 'light');
+        }
+        updateThemeIcon();
+
+        // 2. RTL Logic
+        const rtlToggle = document.getElementById("rtlToggle");
+        
+        function toggleRTL() {
+            const current = htmlElement.getAttribute("dir") || "ltr";
+            const next = current === "rtl" ? "ltr" : "rtl";
+            htmlElement.setAttribute("dir", next);
+            localStorage.setItem("direction", next);
+        }
+        
+        if (rtlToggle) rtlToggle.addEventListener("click", toggleRTL);
+        
+        if (localStorage.getItem("direction") === "rtl") {
+            htmlElement.setAttribute("dir", "rtl");
+        }
+
+        // 3. Auth Form Switch Logic
+        function toggleAuthMode(mode) {
+            if(window.event) window.event.preventDefault(); 
+            
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const title = document.getElementById('authTitle');
+            const subtitle = document.getElementById('authSubtitle');
+
+            if (mode === 'signup') {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                title.innerText = "Create an Account";
+                subtitle.innerText = "Start your transformation today";
+            } else {
+                signupForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                title.innerText = "Welcome Back";
+                subtitle.innerText = "Sign in to access your workout plan";
+            }
+        }
+
+        // 4. Modal Logic
+        function showPasswordReset() {
+            if(window.event) window.event.preventDefault();
+            document.getElementById('passwordResetModal').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('passwordResetModal').querySelector('div').style.transform = 'scale(1)';
+            }, 10);
+        }
+
+        function closePasswordReset() {
+            document.getElementById('passwordResetModal').querySelector('div').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                document.getElementById('passwordResetModal').classList.add('hidden');
+            }, 300);
+        }
+
+        function sendResetLink(event) {
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            setTimeout(() => {
+                alert('Reset link sent to your email!');
+                btn.textContent = originalText;
+                closePasswordReset();
+            }, 1000);
+        }
+
+        // 5. Login Submission Simulation
+        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('loginButton');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Authenticating...';
+            
+            setTimeout(() => {
+                window.location.href = 'user-dashboard.html';
+            }, 1500);
+        });
+
+        // 6. Sign Up Submission Simulation
+        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('signupButton');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating...';
+            
+            setTimeout(() => {
+                alert('Account created successfully!');
+                window.location.href = 'user-dashboard.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
