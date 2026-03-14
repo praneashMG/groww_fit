@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - GrowwFit</title>
-    <meta name="description" content="Login to GrowwFit - Start your fitness journey today.">
+    <title>Login - CoreFit</title>
+    <meta name="description" content="Login to CoreFit - Start your fitness journey today.">
 
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
@@ -36,10 +36,10 @@
     <style type="text/tailwindcss">
         @layer components {
             .form-input {
-                @apply w-full pl-9 pr-3 py-2.5 border border-gray-300 bg-white text-[#0F172A] rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-[#1E293B] dark:text-[#F8FAFC] dark:border-gray-700 text-sm;
+                @apply w-full pl-8 pr-2 py-2 border border-gray-300 bg-white text-[#0F172A] rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-[#1E293B] dark:text-[#F8FAFC] dark:border-gray-700 text-xs;
             }
             .social-btn {
-                @apply flex-1 flex items-center justify-center py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg text-[#0F172A] dark:text-[#F8FAFC] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-300;
+                @apply flex-1 flex items-center justify-center py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-[#0F172A] dark:text-[#F8FAFC] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-300;
             }
         }
     </style>
@@ -94,112 +94,112 @@
 </head>
 <body>
 
-    <nav class="bg-[var(--navbar-bg)] shadow-sm relative z-50 h-20 border-b border-[var(--border-color)] transition-colors duration-300">
-        <div class="max-w-[1400px] mx-auto px-6 h-full flex justify-between items-center">
+    <nav class="bg-[var(--navbar-bg)] shadow-sm relative z-50 h-16 md:h-20 border-b border-[var(--border-color)] transition-colors duration-300">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 h-full flex justify-between items-center">
             
             <a href="index.html" class="flex items-center gap-2 no-underline transition-transform duration-300 hover:scale-105">
-                <div class="w-10 h-10 bg-[#E63946] rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
-                    <i class="fas fa-dumbbell text-base transform -rotate-45"></i>
+                <div class="w-8 h-8 md:w-10 md:h-10 bg-[#E63946] rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
+                    <i class="fas fa-dumbbell text-sm md:text-base transform -rotate-45"></i>
                 </div>
                 <div>
-                    <div class="text-xl md:text-2xl font-black tracking-tight text-[var(--text-heading)] leading-none">GrowwFit</div>
+                    <div class="text-lg md:text-2xl font-black tracking-tight text-[var(--text-heading)] leading-none">CoreFit</div>
                 </div>
             </a>
 
             <div class="flex items-center gap-2">
-                <button id="themeToggle" class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle Dark Mode">
-                    <i class="fas fa-sun text-sm hidden dark:inline-block"></i>
-                    <i class="fas fa-moon text-sm dark:hidden"></i>
+                <button id="themeToggle" class="w-8 h-8 md:w-10 md:h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle Dark Mode">
+                    <i class="fas fa-sun text-xs md:text-sm hidden dark:inline-block"></i>
+                    <i class="fas fa-moon text-xs md:text-sm dark:hidden"></i>
                 </button>
-                <button id="rtlToggle" class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle RTL">
-                    <i class="fas fa-language text-sm"></i>
+                <button id="rtlToggle" class="w-8 h-8 md:w-10 md:h-10 nav-icon-btn rounded-lg flex items-center justify-center hover:bg-[#E63946] hover:text-white transition-all duration-300" title="Toggle RTL">
+                    <i class="fas fa-language text-xs md:text-sm"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <section class="flex items-center justify-center px-4 h-[calc(100vh-80px)] relative overflow-y-auto py-8">
+    <section class="flex items-center justify-center px-4 h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] relative overflow-y-auto py-4">
         
         <div class="absolute top-10 left-10 w-64 h-64 bg-[#E63946]/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-10 right-10 w-64 h-64 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-[360px] w-full bg-[var(--card-bg)] rounded-3xl shadow-xl border border-[var(--border-color)] animate-fade-in-up p-6 md:p-7 relative z-10 my-auto">
+        <div class="max-w-[340px] w-full bg-[var(--card-bg)] rounded-3xl shadow-xl border border-[var(--border-color)] animate-fade-in-up p-5 md:p-6 relative z-10 my-auto">
             
-            <div class="mb-5 text-center">
-                <h2 id="authTitle" class="text-xl font-black text-[var(--text-heading)] mb-1">Welcome Back</h2>
-                <p id="authSubtitle" class="text-[var(--text-main)] opacity-80 text-xs">Sign in to access your workout plan</p>
+            <div class="mb-4 text-center">
+                <h2 id="authTitle" class="text-lg md:text-xl font-black text-[var(--text-heading)] mb-1">Welcome Back</h2>
+                <p id="authSubtitle" class="text-[var(--text-main)] opacity-80 text-[11px] md:text-xs">Sign in to access your workout plan</p>
             </div>
 
-            <div id="loginForm" class="space-y-4">
+            <div id="loginForm" class="space-y-3">
                 <form id="loginFormElement" class="space-y-3">
-                    <div class="space-y-3">
+                    <div class="space-y-2.5">
                         <div>
-                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Email Address</label>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Email Address</label>
                             <div class="relative">
-                                <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-xs"></i>
                                 <input type="email" placeholder="david@example.com" required class="form-input" id="loginEmail">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Password</label>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Password</label>
                             <div class="relative">
-                                <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-xs"></i>
                                 <input type="password" id="loginPassword" placeholder="Enter password" required class="form-input">
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between text-xs font-medium py-1">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" class="w-3.5 h-3.5 text-[#E63946] rounded focus:ring-[#E63946] border-gray-300 bg-gray-50 dark:bg-black/20 dark:border-gray-600">
-                            <span class="text-[var(--text-main)] text-[11px]">Remember me</span>
+                    <div class="flex items-center justify-between text-[10px] md:text-xs font-medium py-1">
+                        <label class="flex items-center gap-1.5 cursor-pointer">
+                            <input type="checkbox" class="w-3 h-3 text-[#E63946] rounded focus:ring-[#E63946] border-gray-300 bg-gray-50 dark:bg-black/20 dark:border-gray-600">
+                            <span class="text-[var(--text-main)] text-[10px]">Remember me</span>
                         </label>
-                        <a href="#" class="text-[#E63946] hover:text-red-700 font-bold transition-colors text-[11px]" onclick="showPasswordReset()">Forgot Password?</a>
+                        <a href="#" class="text-[#E63946] hover:text-red-700 font-bold transition-colors text-[10px]" onclick="showPasswordReset()">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 mt-1 rounded-xl font-bold text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="loginButton">
+                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2 mt-1 rounded-xl font-bold text-xs md:text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="loginButton">
                         Login Securely
                     </button>
                 </form>
 
                 <div class="relative flex items-center py-1">
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
-                    <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or continue with</span>
+                    <span class="flex-shrink-0 mx-2 text-[var(--text-main)] opacity-60 text-[8px] md:text-[9px] font-bold uppercase tracking-wider">Or continue with</span>
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
                 </div>
 
                 <div class="flex gap-2 w-full">
                     <button class="social-btn" title="Sign in with Google">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-3.5 h-3.5 md:w-4 md:h-4" alt="Google">
                     </button>
                     <button class="social-btn" title="Sign in with Facebook">
-                        <i class="fab fa-facebook text-[#1877F2] text-[18px]"></i>
+                        <i class="fab fa-facebook text-[#1877F2] text-[16px] md:text-[18px]"></i>
                     </button>
                     <button class="social-btn" title="Sign in with Apple">
-                        <i class="fab fa-apple text-black dark:text-white text-[19px]"></i>
+                        <i class="fab fa-apple text-black dark:text-white text-[17px] md:text-[19px]"></i>
                     </button>
                 </div>
 
-                <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
+                <p class="text-center text-[10px] md:text-[11px] text-[var(--text-main)] mt-2">
                     Ready to start your journey? 
                     <a href="#" onclick="toggleAuthMode('signup')" class="text-[#E63946] hover:text-red-700 font-bold transition-colors ml-1">Sign Up</a>
                 </p>
             </div>
 
-            <div id="signupForm" class="space-y-4 hidden">
-                <form id="signupFormElement" class="space-y-3">
+            <div id="signupForm" class="space-y-3 hidden">
+                <form id="signupFormElement" class="space-y-2.5">
                     
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">First Name</label>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">First Name</label>
                             <div class="relative">
-                                <i class="fas fa-user absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                                <i class="fas fa-user absolute top-1/2 -translate-y-1/2 text-gray-400 left-2.5 text-xs"></i>
                                 <input type="text" placeholder="David" required class="form-input" id="firstName">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Last Name</label>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Last Name</label>
                             <div class="relative">
                                 <input type="text" placeholder="Miller" required class="form-input pl-3" id="lastName">
                             </div>
@@ -207,45 +207,63 @@
                     </div>
 
                     <div>
-                        <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Email Address</label>
+                        <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Email Address</label>
                         <div class="relative">
-                            <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
+                            <i class="fas fa-envelope absolute top-1/2 -translate-y-1/2 text-gray-400 left-2.5 text-xs"></i>
                             <input type="email" placeholder="david@example.com" required class="form-input" id="signupEmail">
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-[var(--text-heading)] font-bold mb-1 text-[10px] uppercase tracking-wider">Password</label>
-                        <div class="relative">
-                            <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-3 text-sm"></i>
-                            <input type="password" id="signupPassword" placeholder="Create strong password" required class="form-input">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Password</label>
+                            <div class="relative">
+                                <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-2.5 text-xs"></i>
+                                <input type="password" id="signupPassword" placeholder="Create" required class="form-input">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[var(--text-heading)] font-bold mb-1 text-[9px] md:text-[10px] uppercase tracking-wider">Confirm</label>
+                            <div class="relative">
+                                <i class="fas fa-lock absolute top-1/2 -translate-y-1/2 text-gray-400 left-2.5 text-xs"></i>
+                                <input type="password" id="signupConfirmPassword" placeholder="Confirm" required class="form-input">
+                            </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 mt-2 rounded-xl font-bold text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="signupButton">
+                    <div class="flex items-start gap-1.5 py-0.5 mt-1">
+                        <div class="flex items-center h-4">
+                            <input id="terms" type="checkbox" required class="w-3 h-3 text-[#E63946] rounded focus:ring-[#E63946] border-gray-300 bg-gray-50 dark:bg-black/20 dark:border-gray-600">
+                        </div>
+                        <label for="terms" class="text-[var(--text-main)] text-[9px] md:text-[10px] font-medium leading-tight">
+                            I agree to the <a href="#" class="text-[#E63946] hover:text-red-700 transition-colors">Terms & Conditions</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2 mt-1 rounded-xl font-bold text-xs md:text-sm transition-all duration-300 shadow-md transform hover:-translate-y-0.5 border border-transparent" id="signupButton">
                         Create Account
                     </button>
                 </form>
 
                 <div class="relative flex items-center py-1">
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
-                    <span class="flex-shrink-0 mx-3 text-[var(--text-main)] opacity-60 text-[9px] font-bold uppercase tracking-wider">Or sign up with</span>
+                    <span class="flex-shrink-0 mx-2 text-[var(--text-main)] opacity-60 text-[8px] md:text-[9px] font-bold uppercase tracking-wider">Or sign up with</span>
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
                 </div>
 
                 <div class="flex gap-2 w-full">
-                    <button class="social-btn" title="Sign in with Google">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                    <button class="social-btn" title="Sign up with Google">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-3.5 h-3.5 md:w-4 md:h-4" alt="Google">
                     </button>
-                    <button class="social-btn" title="Sign in with Facebook">
-                        <i class="fab fa-facebook text-[#1877F2] text-[18px]"></i>
+                    <button class="social-btn" title="Sign up with Facebook">
+                        <i class="fab fa-facebook text-[#1877F2] text-[16px] md:text-[18px]"></i>
                     </button>
-                    <button class="social-btn" title="Sign in with Apple">
-                        <i class="fab fa-apple text-black dark:text-white text-[19px]"></i>
+                    <button class="social-btn" title="Sign up with Apple">
+                        <i class="fab fa-apple text-black dark:text-white text-[17px] md:text-[19px]"></i>
                     </button>
                 </div>
 
-                <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
+                <p class="text-center text-[10px] md:text-[11px] text-[var(--text-main)] mt-2">
                     Already a member? 
                     <a href="#" onclick="toggleAuthMode('login')" class="text-[#E63946] hover:text-red-700 font-bold transition-colors ml-1">Log In</a>
                 </p>
@@ -255,26 +273,26 @@
     </section>
 
     <div id="passwordResetModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden p-4">
-        <div class="bg-[var(--card-bg)] rounded-2xl p-7 max-w-[340px] w-full shadow-2xl transform transition-all duration-300 scale-95 border border-[var(--border-color)] relative overflow-hidden">
+        <div class="bg-[var(--card-bg)] rounded-2xl p-6 max-w-[320px] w-full shadow-2xl transform transition-all duration-300 scale-95 border border-[var(--border-color)] relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-1.5 bg-[#E63946]"></div>
             
             <div class="flex justify-between items-center mb-3">
-                <h3 class="text-lg font-black text-[var(--text-heading)]">Reset Password</h3>
+                <h3 class="text-base md:text-lg font-black text-[var(--text-heading)]">Reset Password</h3>
                 <button onclick="closePasswordReset()" class="text-gray-400 hover:text-[#E63946] transition-colors">
-                    <i class="fas fa-times text-lg"></i>
+                    <i class="fas fa-times text-base md:text-lg"></i>
                 </button>
             </div>
             
-            <p class="text-[var(--text-main)] opacity-80 mb-5 text-xs leading-relaxed">
+            <p class="text-[var(--text-main)] opacity-80 mb-4 text-[10px] md:text-xs leading-relaxed">
                 Enter your email address associated with your account and we'll send you a link to reset your password.
             </p>
             
-            <div class="space-y-4">
+            <div class="space-y-3">
                 <div class="relative">
-                    <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
                     <input type="email" placeholder="david@example.com" class="form-input" id="resetEmail">
                 </div>
-                <button onclick="sendResetLink(event)" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2.5 rounded-xl font-bold transition-all duration-300 text-sm shadow-md">
+                <button onclick="sendResetLink(event)" class="w-full bg-[#E63946] hover:bg-red-700 text-white py-2 rounded-xl font-bold transition-all duration-300 text-xs md:text-sm shadow-md">
                     Send Reset Link
                 </button>
             </div>
@@ -348,7 +366,7 @@
             if (mode === 'signup') {
                 loginForm.classList.add('hidden');
                 signupForm.classList.remove('hidden');
-                title.innerText = "Create an Account";
+                title.innerText = "Create Account";
                 subtitle.innerText = "Start your transformation today";
             } else {
                 signupForm.classList.add('hidden');
@@ -400,6 +418,16 @@
         // 6. Sign Up Submission Simulation
         document.getElementById('signupFormElement').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Password match validation
+            const pwd = document.getElementById('signupPassword').value;
+            const confirmPwd = document.getElementById('signupConfirmPassword').value;
+            
+            if (pwd !== confirmPwd) {
+                alert("Passwords do not match!");
+                return;
+            }
+
             const btn = document.getElementById('signupButton');
             
             btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Creating...';
@@ -411,7 +439,6 @@
         });
 
         // 7. Check URL Parameter for Initial Load Mode
-        // This will open 'Create an Account' directly if the URL contains ?mode=signup or ?mode=register
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const authMode = urlParams.get('mode');
