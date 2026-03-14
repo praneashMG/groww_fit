@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Not Found - CoreFit">
+    <title>404 - Page Not Found | CoreFit</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#E63946', /* Power Red */
+                        secondary: '#F59E0B', /* Gold Energy */
+                    },
+                    animation: {
+                        'float': 'float 6s infinite ease-in-out',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            /* CoreFit Light Mode Variables */
+            --primary-color: #E63946; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #FFFFFF;
+            --nav-text: #1F2937;
+            --border-color: #E2E8F0;
+            --dropdown-bg: #FFFFFF;
+        }
+        
+        [data-theme="dark"] {
+            /* CoreFit Dark Mode Variables */
+            --primary-color: #E63946;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;   
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --nav-text: #F8FAFC;
+            --border-color: #334155;
+            --dropdown-bg: #111827;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--text-heading), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        [data-theme="dark"] .gradient-text {
+            background: linear-gradient(135deg, var(--text-heading), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Base Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0; /* Start hidden */
+            animation-fill-mode: forwards;
+        }
+
+        /* Scrollbar aesthetics */
+        body::-webkit-scrollbar { width: 8px; }
+        body::-webkit-scrollbar-track { background: transparent; }
+        body::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 20px; }
+        .dark body::-webkit-scrollbar-thumb { background-color: #374151; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+        <button class="w-10 h-10 bg-card-theme border border-theme rounded-xl flex items-center justify-center text-heading-theme transition-all duration-300 hover:bg-primary hover:text-white shadow-lg cursor-pointer" id="desktop-theme-toggle-btn" title="Toggle Dark/Light Mode">
+            <i class="fas fa-moon" id="desktop-theme-icon"></i>
+        </button>
+        <button class="w-10 h-10 bg-card-theme border border-theme rounded-xl flex items-center justify-center text-heading-theme transition-all duration-300 hover:bg-primary hover:text-white shadow-lg cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+            <i class="fas fa-language"></i>
+        </button>
+    </div>
+
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-3xl w-full text-center relative z-10">
+            
+            <div class="flex flex-col items-center justify-center mb-6 fade-in" style="animation-delay: 0.1s;">
+                <div class="relative w-16 h-16 bg-primary rounded-xl flex items-center justify-center shadow-lg border-2 border-primary overflow-hidden mb-3">
+                    <i class="fas fa-dumbbell text-white text-3xl transform -rotate-45"></i>
+                </div>
+                <h3 class="text-xl font-black text-heading-theme tracking-tight">Core<span class="text-primary">Fit</span></h3>
+            </div>
+
+            <div class="float-animation fade-in relative py-4" style="animation-delay: 0.2s;">
+                <h1 class="text-[8rem] md:text-[12rem] font-black gradient-text leading-none select-none drop-shadow-sm">
+                    404
+                </h1>
+                
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary/5 dark:text-primary/10 pointer-events-none z-[-1]">
+                    <i class="fas fa-dumbbell transform -rotate-45 text-[12rem] md:text-[16rem]"></i>
+                </div>
+            </div>
+
+            <h2 class="text-3xl md:text-5xl font-black mt-2 mb-4 fade-in text-heading-theme" style="animation-delay: 0.3s;">
+                Looks Like You Missed a Rep
+            </h2>
+
+            <p class="text-lg text-body-theme opacity-80 mb-10 fade-in max-w-md mx-auto leading-relaxed" style="animation-delay: 0.4s;">
+                We can build muscle and burn fat, but we can't seem to find the page you're looking for. It might have been left at the squat rack.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in" style="animation-delay: 0.5s;">
+                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-primary text-white font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-[0_10px_20px_rgba(230,57,70,0.3)] text-sm border-2 border-primary hover:bg-red-700">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Gym</span>
+                </a>
+
+                <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-card-theme text-heading-theme font-bold px-8 py-3.5 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg border-2 border-theme hover:bg-theme-main text-sm group">
+                    <i class="fas fa-headset text-primary group-hover:scale-110 transition-transform"></i>
+                    <span>Contact Support</span>
+                </a>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-theme fade-in w-full max-w-lg mx-auto" style="animation-delay: 0.6s;">
+                <p class="text-xs font-bold uppercase tracking-widest text-body-theme opacity-60 mb-6">Or try finding these</p>
+                
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-sm font-semibold">
+                    <a href="programs.html" class="flex items-center gap-2 text-body-theme hover:text-primary transition-colors group">
+                        <span class="w-8 h-8 rounded-lg bg-card-theme border border-theme flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary shadow-sm">
+                            <i class="fas fa-dumbbell text-xs transform -rotate-45"></i>
+                        </span>
+                        Programs
+                    </a>
+                    
+                    <a href="nutrition.html" class="flex items-center gap-2 text-body-theme hover:text-primary transition-colors group">
+                        <span class="w-8 h-8 rounded-lg bg-card-theme border border-theme flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary shadow-sm">
+                            <i class="fas fa-apple-alt text-xs"></i>
+                        </span>
+                        Nutrition
+                    </a>
+                    
+                    <a href="faq.html" class="flex items-center gap-2 text-body-theme hover:text-primary transition-colors group">
+                        <span class="w-8 h-8 rounded-lg bg-card-theme border border-theme flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary shadow-sm">
+                            <i class="fas fa-question-circle text-xs"></i>
+                        </span>
+                        FAQ
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="py-6 text-center text-xs text-body-theme opacity-60 fade-in" style="animation-delay: 0.8s;">
+        &copy; 2026 CoreFit. All rights reserved.
+    </div>
+
+    <div class="absolute top-0 left-0 w-64 h-64 bg-primary opacity-10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary opacity-10 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+
+    <script>
+        const htmlElement = document.documentElement;
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+
+        // Initialize Theme from LocalStorage
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.className = 'fas fa-sun';
+        }
+
+        // Toggle Theme Logic
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            
+            if (desktopThemeIcon) {
+                desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        if (desktopThemeToggleBtn) {
+            desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        }
+
+        // Initialize RTL from LocalStorage
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+
+        // Toggle RTL Logic
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+        }
+        
+        if (desktopRtlToggleBtn) {
+            desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        }
+    </script>
+</body>
+</html>

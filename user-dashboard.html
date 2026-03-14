@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GrowwFit - User Dashboard. Track your workouts, nutrition, and progress.">
-    <title>GrowwFit - User Dashboard</title>
+    <meta name="description" content="CoreFit - User Dashboard. Track your workouts, nutrition, and progress.">
+    <title>CoreFit - User Dashboard</title>
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
@@ -43,7 +43,7 @@
         
         [data-theme="dark"] {
             --primary-color: #E63946;      
-            --secondary-color: #F59E0B;     
+            --secondary-color: #F59E0B;    
             --bg-color: #020617;
             --bg-alt: #0F172A;   
             --card-bg: #1E293B;
@@ -105,7 +105,12 @@
             transition: all 0.3s ease;
         }
         
-        .sidebar-link:hover, .sidebar-link.active {
+        .sidebar-link:hover:not(.active) {
+            background-color: rgba(230, 57, 70, 0.1);
+            color: var(--primary-color);
+        }
+
+        .sidebar-link.active {
             background-color: rgba(230, 57, 70, 0.1);
             color: var(--primary-color);
             border-right: 4px solid var(--primary-color);
@@ -138,7 +143,7 @@
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
                     <i class="fas fa-dumbbell text-sm md:text-base transform -rotate-45"></i>
                 </div>
-                <div class="text-lg sm:text-xl md:text-2xl font-black tracking-tight navbar-brand-text">GrowwFit</div>
+                <div class="text-lg sm:text-xl md:text-2xl font-black tracking-tight navbar-brand-text">CoreFit</div>
             </a>
         </div>
         
@@ -170,28 +175,19 @@
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
-                <a href="#" class="sidebar-link active block px-4 py-3 rounded-xl font-bold text-sm">
-                    Dashboard
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    My Program
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Nutrition & Macros
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Progress
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Coach Chat
-                </a>
+                <button onclick="switchTab('overview')" id="tab-overview" class="sidebar-link active w-full text-left block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-home w-5 text-center mr-2"></i> Dashboard Overview
+                </button>
+                <button onclick="switchTab('workout')" id="tab-workout" class="sidebar-link w-full text-left block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-dumbbell w-5 text-center mr-2"></i> Today's Workout
+                </button>
+                <button onclick="switchTab('nutrition')" id="tab-nutrition" class="sidebar-link w-full text-left block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-apple-alt w-5 text-center mr-2"></i> Nutrition & Macros
+                </button>
+                <button onclick="switchTab('history')" id="tab-history" class="sidebar-link w-full text-left block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-history w-5 text-center mr-2"></i> Activity History
+                </button>
             </nav>
-
-            <div class="px-4 mt-auto">
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Settings
-                </a>
-            </div>
         </aside>
 
         <main class="flex-1 h-full overflow-y-auto p-4 lg:p-8 bg-theme-alt relative w-full">
@@ -200,14 +196,14 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-theme-main p-6 rounded-2xl border border-theme shadow-sm">
                     <div>
                         <h1 class="text-2xl md:text-3xl font-black text-heading-theme">Welcome back, David! 🚀</h1>
-                        <p class="text-body-theme text-sm mt-1">You have 1 workout scheduled for today.</p>
+                        <p class="text-body-theme text-sm mt-1" id="section-description">You have 1 workout scheduled for today.</p>
                     </div>
                     <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md">
                         Start Workout
                     </button>
                 </div>
 
-                <div>
+                <div id="stats-section" class="transition-all duration-300">
                     <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Overview</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         
@@ -234,11 +230,11 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div id="dynamic-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-300">
                     
-                    <div>
+                    <div id="workout-section" class="transition-all duration-300 h-full">
                         <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Daily Targets</span>
-                        <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6">
+                        <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full">
                             <div class="flex justify-between items-center mb-6">
                                 <h3 class="text-lg font-bold text-heading-theme">Today's Workout</h3>
                                 <span class="bg-theme-alt text-body-theme px-3 py-1 rounded-lg text-xs font-bold border border-theme">Week 4 / Day 3</span>
@@ -275,7 +271,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div id="nutrition-section" class="transition-all duration-300 h-full">
                         <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Nutrition</span>
                         <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full flex flex-col">
                             <div class="flex justify-between items-center mb-6">
@@ -321,7 +317,7 @@
 
                 </div>
 
-                <div>
+                <div id="history-section" class="transition-all duration-300">
                     <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">History</span>
                     <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6">
                         <div class="flex justify-between items-center mb-6">
@@ -446,6 +442,68 @@
         // Initial setup for sidebar on load based on width
         if(window.innerWidth < 1024) {
             sidebar.classList.add('-translate-x-full');
+        }
+
+        // --- TAB SWITCHING LOGIC BRO ---
+        function switchTab(tabId) {
+            // Update active states on sidebar buttons
+            document.querySelectorAll('.sidebar-link').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Close mobile menu if open after selection
+            if(window.innerWidth < 1024) {
+                closeSidebar();
+            }
+
+            // Get layout elements
+            const stats = document.getElementById('stats-section');
+            const grid = document.getElementById('dynamic-grid');
+            const workout = document.getElementById('workout-section');
+            const nutrition = document.getElementById('nutrition-section');
+            const history = document.getElementById('history-section');
+            const desc = document.getElementById('section-description');
+
+            if (tabId === 'overview') {
+                desc.innerText = "Here is a summary of your sustainable journey with CoreFit.";
+                
+                stats.classList.remove('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-300';
+                workout.classList.remove('hidden');
+                nutrition.classList.remove('hidden');
+                history.classList.remove('hidden');
+            
+            } else if (tabId === 'workout') {
+                desc.innerText = "Manage and track your active workouts.";
+                
+                stats.classList.add('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'block transition-all duration-300'; // Make workout full width
+                workout.classList.remove('hidden');
+                nutrition.classList.add('hidden');
+                history.classList.add('hidden');
+            
+            } else if (tabId === 'nutrition') {
+                desc.innerText = "Log meals and track your daily macronutrient intake.";
+                
+                stats.classList.add('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'block transition-all duration-300'; // Make nutrition full width
+                workout.classList.add('hidden');
+                nutrition.classList.remove('hidden');
+                history.classList.add('hidden');
+
+            } else if (tabId === 'history') {
+                desc.innerText = "View your recent activity, PRs, and logged milestones.";
+                
+                stats.classList.add('hidden');
+                grid.classList.add('hidden'); // Hide the whole grid
+                workout.classList.add('hidden');
+                nutrition.classList.add('hidden');
+                history.classList.remove('hidden');
+            }
         }
     </script>
 </body>

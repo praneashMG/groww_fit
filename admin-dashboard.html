@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GrowwFit - Admin Dashboard. Manage clients, programs, and platform analytics.">
-    <title>GrowwFit - Admin Dashboard</title>
+    <meta name="description" content="CoreFit - Admin Dashboard. Manage clients, programs, and platform analytics.">
+    <title>CoreFit - Admin Dashboard</title>
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
@@ -43,7 +43,7 @@
         
         [data-theme="dark"] {
             --primary-color: #E63946;      
-            --secondary-color: #F59E0B;     
+            --secondary-color: #F59E0B;    
             --bg-color: #020617;
             --bg-alt: #0F172A;   
             --card-bg: #1E293B;
@@ -96,7 +96,7 @@
         /* Sidebar Styles */
         .sidebar {
             background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
+            border-inline-end: 1px solid var(--border-color); /* Logical property for RTL */
             transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
         }
         
@@ -105,10 +105,15 @@
             transition: all 0.3s ease;
         }
         
-        .sidebar-link:hover, .sidebar-link.active {
+        .sidebar-link:hover:not(.active) {
             background-color: rgba(230, 57, 70, 0.1);
             color: var(--primary-color);
-            border-right: 4px solid var(--primary-color);
+        }
+
+        .sidebar-link.active {
+            background-color: rgba(230, 57, 70, 0.1);
+            color: var(--primary-color);
+            border-inline-end: 4px solid var(--primary-color); 
         }
         
         /* Mobile Sidebar Overlay */
@@ -130,7 +135,7 @@
                 <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0 shadow-md">
                     <i class="fas fa-dumbbell text-sm md:text-base transform -rotate-45"></i>
                 </div>
-                <div class="text-lg sm:text-xl md:text-2xl font-black tracking-tight navbar-brand-text">GrowwFit </div>
+                <div class="text-lg sm:text-xl md:text-2xl font-black tracking-tight navbar-brand-text">CoreFit</div>
             </a>
         </div>
         
@@ -164,32 +169,22 @@
             </div>
 
             <nav class="flex-1 px-4 py-6 space-y-2">
-                <a href="#" class="sidebar-link active block px-4 py-3 rounded-xl font-bold text-sm">
-                    Dashboard
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Client Management
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Workout Builder
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Nutrition Plans
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm relative">
-                    Messages
-                    <span class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded-full">3</span>
-                </a>
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Revenue Analytics
-                </a>
+                <button onclick="switchTab('overview')" id="tab-overview" class="sidebar-link active w-full text-start block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-home w-5 text-center mr-2"></i> Dashboard Overview
+                </button>
+                <button onclick="switchTab('metrics')" id="tab-metrics" class="sidebar-link w-full text-start block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-chart-pie w-5 text-center mr-2"></i> Key Metrics
+                </button>
+                <button onclick="switchTab('alerts')" id="tab-alerts" class="sidebar-link w-full text-start block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-bell w-5 text-center mr-2"></i> Client Alerts
+                </button>
+                <button onclick="switchTab('schedule')" id="tab-schedule" class="sidebar-link w-full text-start block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-calendar-alt w-5 text-center mr-2"></i> Schedule
+                </button>
+                <button onclick="switchTab('management')" id="tab-management" class="sidebar-link w-full text-start block px-4 py-3 rounded-xl font-bold text-sm border-none cursor-pointer bg-transparent">
+                    <i class="fas fa-tasks w-5 text-center mr-2"></i> Management
+                </button>
             </nav>
-
-            <div class="px-4 mt-auto">
-                <a href="#" class="sidebar-link block px-4 py-3 rounded-xl font-bold text-sm">
-                    Platform Settings
-                </a>
-            </div>
         </aside>
 
         <main class="flex-1 h-full overflow-y-auto p-4 lg:p-8 bg-theme-alt relative w-full">
@@ -198,14 +193,14 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-theme-main p-6 rounded-2xl border border-theme shadow-sm">
                     <div>
                         <h1 class="text-2xl md:text-3xl font-black text-heading-theme">Platform Overview 📊</h1>
-                        <p class="text-body-theme text-sm mt-1">Here is what is happening across your fitness ecosystem today.</p>
+                        <p class="text-body-theme text-sm mt-1" id="section-description">Here is what is happening across your fitness ecosystem today.</p>
                     </div>
                     <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md shrink-0">
                         Create New Program
                     </button>
                 </div>
 
-                <div>
+                <div id="metrics-section" class="transition-all duration-300">
                     <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Key Metrics</span>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         
@@ -233,9 +228,9 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div id="dynamic-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-300">
                     
-                    <div>
+                    <div id="alerts-section" class="transition-all duration-300 h-full w-full">
                         <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Client Alerts</span>
                         <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full">
                             <div class="flex justify-between items-center mb-6">
@@ -280,7 +275,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    <div id="schedule-section" class="transition-all duration-300 h-full w-full">
                         <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Schedule</span>
                         <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6 h-full">
                             <div class="flex justify-between items-center mb-6">
@@ -289,7 +284,7 @@
                             </div>
 
                             <div class="space-y-4">
-                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex items-center justify-between hover:border-primary transition-colors">
+                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex flex-wrap items-center justify-between gap-4 hover:border-primary transition-colors">
                                     <div class="flex items-center gap-4">
                                         <div class="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0 border border-primary/20">
                                             <div class="text-center leading-none">
@@ -302,12 +297,12 @@
                                             <p class="text-xs text-body-theme mt-0.5">Client: Marcus Doe</p>
                                         </div>
                                     </div>
-                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors">
+                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors shrink-0">
                                         Join Call
                                     </button>
                                 </div>
 
-                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex items-center justify-between hover:border-primary transition-colors">
+                                <div class="bg-theme-main p-4 rounded-xl border border-theme flex flex-wrap items-center justify-between gap-4 hover:border-primary transition-colors">
                                     <div class="flex items-center gap-4">
                                         <div class="w-12 h-12 bg-theme-alt text-body-theme rounded-lg flex items-center justify-center shrink-0 border border-theme">
                                             <div class="text-center leading-none">
@@ -320,7 +315,7 @@
                                             <p class="text-xs text-body-theme mt-0.5">Client: Sarah Jenkins</p>
                                         </div>
                                     </div>
-                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors">
+                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors shrink-0">
                                         Join Call
                                     </button>
                                 </div>
@@ -332,7 +327,7 @@
 
                 </div>
 
-                <div>
+                <div id="management-section" class="transition-all duration-300">
                     <span class="text-primary font-bold tracking-wider uppercase text-xs mb-2 block">Management</span>
                     <div class="bg-card-theme rounded-2xl border border-theme shadow-sm p-6">
                         <h3 class="text-lg font-bold text-heading-theme mb-6">Quick Actions</h3>
@@ -358,6 +353,11 @@
                 </div>
 
             </div>
+            
+            <div class="mt-12 text-center text-xs text-body-theme opacity-60">
+                &copy; 2026 CoreFit. Admin Portal Secured.
+            </div>
+            <div class="pb-10"></div> 
         </main>
     </div>
 
@@ -424,7 +424,13 @@
             sidebarOverlay.classList.add('hidden');
         }
 
-        if(sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
+        if(sidebarToggle) sidebarToggle.addEventListener('click', () => {
+            if(sidebar.classList.contains('-translate-x-full')) {
+                openSidebar();
+            } else {
+                closeSidebar();
+            }
+        });
         if(sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
         // Handle resizing window to clean up mobile classes
@@ -440,6 +446,77 @@
         // Initial setup for sidebar on load based on width
         if(window.innerWidth < 1024) {
             sidebar.classList.add('-translate-x-full');
+        }
+
+        // --- TAB SWITCHING LOGIC ---
+        function switchTab(tabId) {
+            // Update active states on sidebar buttons
+            document.querySelectorAll('.sidebar-link').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Close mobile menu if open after selection
+            if(window.innerWidth < 1024) {
+                closeSidebar();
+            }
+
+            // Get layout elements
+            const metrics = document.getElementById('metrics-section');
+            const grid = document.getElementById('dynamic-grid');
+            const alerts = document.getElementById('alerts-section');
+            const schedule = document.getElementById('schedule-section');
+            const management = document.getElementById('management-section');
+            const desc = document.getElementById('section-description');
+
+            if (tabId === 'overview') {
+                desc.innerText = "Here is what is happening across your fitness ecosystem today.";
+                
+                metrics.classList.remove('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-300';
+                alerts.classList.remove('hidden');
+                schedule.classList.remove('hidden');
+                management.classList.remove('hidden');
+            
+            } else if (tabId === 'metrics') {
+                desc.innerText = "View your high-level platform performance and revenue metrics.";
+                
+                metrics.classList.remove('hidden');
+                grid.classList.add('hidden');
+                alerts.classList.add('hidden');
+                schedule.classList.add('hidden');
+                management.classList.add('hidden');
+            
+            } else if (tabId === 'alerts') {
+                desc.innerText = "Stay updated on recent client check-ins and milestones.";
+                
+                metrics.classList.add('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'block transition-all duration-300'; // Full width single card
+                alerts.classList.remove('hidden');
+                schedule.classList.add('hidden');
+                management.classList.add('hidden');
+
+            } else if (tabId === 'schedule') {
+                desc.innerText = "Manage your upcoming calls and appointments.";
+                
+                metrics.classList.add('hidden');
+                grid.classList.remove('hidden');
+                grid.className = 'block transition-all duration-300'; // Full width single card
+                alerts.classList.add('hidden');
+                schedule.classList.remove('hidden');
+                management.classList.add('hidden');
+
+            } else if (tabId === 'management') {
+                desc.innerText = "Quickly execute administrative actions and manage the platform.";
+                
+                metrics.classList.add('hidden');
+                grid.classList.add('hidden'); // Hide the grid container completely
+                alerts.classList.add('hidden');
+                schedule.classList.add('hidden');
+                management.classList.remove('hidden');
+            }
         }
     </script>
 </body>

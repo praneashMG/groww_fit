@@ -39,7 +39,7 @@
                 @apply w-full pl-9 pr-3 py-2.5 border border-gray-300 bg-white text-[#0F172A] rounded-lg focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none dark:bg-[#1E293B] dark:text-[#F8FAFC] dark:border-gray-700 text-sm;
             }
             .social-btn {
-                @apply w-full flex items-center justify-center gap-2 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-bold text-[#0F172A] dark:text-[#F8FAFC] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-300;
+                @apply flex-1 flex items-center justify-center py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg text-[#0F172A] dark:text-[#F8FAFC] hover:bg-gray-50 dark:hover:bg-white/5 transition-colors duration-300;
             }
         }
     </style>
@@ -103,7 +103,6 @@
                 </div>
                 <div>
                     <div class="text-xl md:text-2xl font-black tracking-tight text-[var(--text-heading)] leading-none">GrowwFit</div>
-                    
                 </div>
             </a>
 
@@ -170,10 +169,17 @@
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
                 </div>
 
-                <button class="social-btn">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
-                    Google
-                </button>
+                <div class="flex gap-2 w-full">
+                    <button class="social-btn" title="Sign in with Google">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                    </button>
+                    <button class="social-btn" title="Sign in with Facebook">
+                        <i class="fab fa-facebook text-[#1877F2] text-[18px]"></i>
+                    </button>
+                    <button class="social-btn" title="Sign in with Apple">
+                        <i class="fab fa-apple text-black dark:text-white text-[19px]"></i>
+                    </button>
+                </div>
 
                 <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
                     Ready to start your journey? 
@@ -227,10 +233,17 @@
                     <div class="flex-grow border-t border-[var(--border-color)]"></div>
                 </div>
 
-                <button class="social-btn">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
-                    Google
-                </button>
+                <div class="flex gap-2 w-full">
+                    <button class="social-btn" title="Sign in with Google">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+                    </button>
+                    <button class="social-btn" title="Sign in with Facebook">
+                        <i class="fab fa-facebook text-[#1877F2] text-[18px]"></i>
+                    </button>
+                    <button class="social-btn" title="Sign in with Apple">
+                        <i class="fab fa-apple text-black dark:text-white text-[19px]"></i>
+                    </button>
+                </div>
 
                 <p class="text-center text-[11px] text-[var(--text-main)] mt-3">
                     Already a member? 
@@ -325,7 +338,7 @@
 
         // 3. Auth Form Switch Logic
         function toggleAuthMode(mode) {
-            if(window.event) window.event.preventDefault(); 
+            if(window.event && window.event.type === 'click') window.event.preventDefault(); 
             
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
@@ -395,6 +408,17 @@
                 alert('Account created successfully!');
                 window.location.href = 'user-dashboard.html';
             }, 1500);
+        });
+
+        // 7. Check URL Parameter for Initial Load Mode
+        // This will open 'Create an Account' directly if the URL contains ?mode=signup or ?mode=register
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const authMode = urlParams.get('mode');
+            
+            if (authMode === 'signup' || authMode === 'register') {
+                toggleAuthMode('signup');
+            }
         });
     </script>
 </body>
