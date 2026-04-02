@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,17 +42,17 @@
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2E43;      /* Increased intensity red for emphasis */
             --secondary-color: #F59E0B;     
-            --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
-            --text-main: #CBD5E1;
-            --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --bg-color: #000000;           /* Pure black background */
+            --bg-alt: #121212;             /* Dark grey alt background */
+            --card-bg: #1C1C1C;            /* Dark grey for cards */
+            --text-main: #D1D5DB;          /* Adjusted text color for better contrast */
+            --text-heading: #FFFFFF;
+            --navbar-bg: #000000;          /* Pure black navbar */
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --dropdown-bg: #111827;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --dropdown-bg: #1C1C1C;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,13 +200,13 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -232,12 +232,15 @@
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-theme-toggle" title="Toggle Dark/Light Mode">
                         <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                     </button>
+                    
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
+                    
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
                         <i class="fas fa-user text-sm"></i>
                     </a>
+                    
                     <button id="close-mobile-menu" class="text-heading-theme text-2xl ml-1 transition-transform active:scale-90">
                         <i class="fas fa-times"></i>
                     </button>
@@ -290,7 +293,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -299,27 +302,35 @@
         </div>
     </div>
 
-    <section class="min-h-[100dvh] flex items-center justify-center pt-[100px] pb-16 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/nutritions.jpg');">
-        <div class="absolute inset-0 bg-black/65 z-0"></div>
+   <section class="min-h-[100dvh] flex items-center justify-center pt-[100px] pb-16 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/nutritions.jpg');">
+    
+    <div class="absolute inset-0 bg-black/65 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 fade-in-up text-center w-full">
         
-        <div class="container mx-auto px-4 relative z-10 fade-in-up text-center w-full">
-            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md text-center w-full">Fuel Your Potential</span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-white leading-tight drop-shadow-lg text-center">
-                Elite <span class="text-primary">Nutrition</span> <br class="hidden md:block" /> Coaching
-            </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium text-center">
-                You can't out-train a bad diet. Master your macros, build sustainable eating habits, and achieve your goals with our science-backed meal plans and intuitive tracking tools.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="#diet-plans" class="bg-primary text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:bg-red-700 shadow-[0_10px_20px_rgba(230,57,70,0.3)] hover:-translate-y-1">
-                    View Diet Plans
-                </a>
-                <a href="#macro-guide" class="bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 border border-white/20 hover:bg-white/20 hover:shadow-md hover:-translate-y-1">
-                    Learn About Macros
-                </a>
-            </div>
+        <span class="text-white font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-md text-center w-full">
+            Fuel Your Potential
+        </span>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 text-white leading-tight drop-shadow-lg text-center">
+            Elite <span class="text-primary">Nutrition</span> <br class="hidden md:block" /> Coaching
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium text-center">
+            You can't out-train a bad diet. Master your macros, build sustainable eating habits, and achieve your goals with our science-backed meal plans and intuitive tracking tools.
+        </p>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+            <a href="#diet-plans" class="bg-primary text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:bg-red-700 shadow-[0_10px_20px_rgba(230,57,70,0.3)] hover:-translate-y-1">
+                View Diet Plans
+            </a>
+            <a href="#macro-guide" class="bg-white/10 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 border border-white/20 hover:bg-white/20 hover:shadow-md hover:-translate-y-1">
+                Learn About Macros
+            </a>
         </div>
-    </section>
+
+    </div>
+</section>
 
     <section class="py-16 md:py-24 bg-theme-alt border-y border-theme">
         <div class="container mx-auto px-4">
@@ -628,7 +639,7 @@
                 
                 <div>
                     <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">App Download</h3>
-                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Get the GrowwFit app on your device.</p>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Get the CoreFit app on your device.</p>
                     <div class="space-y-3">
                         <a href="#" class="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/10 hover:bg-white/20 transition">
                             <i class="fab fa-apple text-2xl text-white"></i>
@@ -663,7 +674,7 @@
     </button>
 
     <script>
-        // Toggle Logic
+        // -- Global Theme and Nav Logic --
         const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
         const desktopThemeIcon = document.getElementById('desktop-theme-icon');
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
@@ -703,17 +714,33 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- FIX: Updated RTL Logic with dynamic icon switching --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        // Set initial icon state based on saved direction
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            // Switch icons: fa-align-left for RTL, fa-align-right for LTR
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);

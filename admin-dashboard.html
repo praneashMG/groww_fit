@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,17 +42,20 @@
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
-            --secondary-color: #F59E0B;    
+            /* Increased intensity red for dark mode emphasis */
+            --primary-color: #FF4D5A;      
+            --secondary-color: #FBBF24;    
+            /* Deep black/grey background */
             --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
-            --text-main: #CBD5E1;
+            --bg-alt: #0B0F1A;   
+            /* Slightly lighter grey for cards to create depth */
+            --card-bg: #111827;
+            --text-main: #94A3B8;
             --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --navbar-bg: #020617;
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --sidebar-bg: #0F172A;
+            --border-color: #1E293B;
+            --sidebar-bg: #0B0F1A;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,7 +83,6 @@
         .text-primary { color: var(--primary-color) !important; }
         .text-secondary { color: var(--secondary-color) !important; }
 
-        /* Navbar Styles */
         .navbar-container {
             background-color: var(--navbar-bg);
             border-bottom: 1px solid var(--border-color);
@@ -89,14 +91,12 @@
         
         .navbar-brand-text { color: var(--nav-text); }
 
-        /* Nav Icon Buttons */
         .nav-icon-btn { background-color: rgba(156, 163, 175, 0.2); color: var(--nav-text); }
-        [data-theme="dark"] .nav-icon-btn { background-color: rgba(255, 255, 255, 0.1); }
+        [data-theme="dark"] .nav-icon-btn { background-color: rgba(255, 255, 255, 0.05); }
 
-        /* Sidebar Styles */
         .sidebar {
             background-color: var(--sidebar-bg);
-            border-inline-end: 1px solid var(--border-color); /* Logical property for RTL */
+            border-inline-end: 1px solid var(--border-color);
             transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
         }
         
@@ -106,19 +106,18 @@
         }
         
         .sidebar-link:hover:not(.active) {
-            background-color: rgba(230, 57, 70, 0.1);
+            background-color: rgba(255, 77, 90, 0.1);
             color: var(--primary-color);
         }
 
         .sidebar-link.active {
-            background-color: rgba(230, 57, 70, 0.1);
+            background-color: rgba(255, 77, 90, 0.15);
             color: var(--primary-color);
             border-inline-end: 4px solid var(--primary-color); 
         }
         
-        /* Mobile Sidebar Overlay */
         .sidebar-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             transition: opacity 0.3s ease;
         }
     </style>
@@ -143,10 +142,12 @@
             <button class="w-8 h-8 sm:w-10 sm:h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 cursor-pointer" id="theme-toggle-btn" title="Toggle Dark/Light Mode">
                 <i class="fas fa-moon text-sm sm:text-base" id="theme-icon"></i>
             </button>
+            
             <button class="w-8 h-8 sm:w-10 sm:h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 cursor-pointer" id="rtl-toggle-btn" title="Toggle RTL">
-                <i class="fas fa-language text-sm sm:text-base"></i>
+                <i class="fas fa-align-right text-sm sm:text-base" id="rtl-icon"></i>
             </button>
-            <a href="login.html" class="bg-primary text-white px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 shadow-md flex items-center gap-2 border border-transparent ml-1 sm:ml-0">
+            
+            <a href="login.html" class="bg-primary text-white px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold text-sm transition-all hover:brightness-110 shadow-md flex items-center gap-2 border border-transparent ml-1 sm:ml-0">
                 <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Logout</span>
             </a>
         </div>
@@ -195,7 +196,7 @@
                         <h1 class="text-2xl md:text-3xl font-black text-heading-theme">Platform Overview 📊</h1>
                         <p class="text-body-theme text-sm mt-1" id="section-description">Here is what is happening across your fitness ecosystem today.</p>
                     </div>
-                    <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md shrink-0">
+                    <button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:brightness-110 transition-all shadow-md shrink-0">
                         Create New Program
                     </button>
                 </div>
@@ -297,7 +298,7 @@
                                             <p class="text-xs text-body-theme mt-0.5">Client: Marcus Doe</p>
                                         </div>
                                     </div>
-                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors shrink-0">
+                                    <button class="px-4 py-2 rounded-lg bg-blue-600 text-white font-bold text-sm shadow-md hover:bg-blue-700 transition-colors shrink-0">
                                         Join Call
                                     </button>
                                 </div>
@@ -315,7 +316,7 @@
                                             <p class="text-xs text-body-theme mt-0.5">Client: Sarah Jenkins</p>
                                         </div>
                                     </div>
-                                    <button class="px-4 py-2 rounded-lg bg-blue-500 text-white font-bold text-sm shadow-md hover:bg-blue-600 transition-colors shrink-0">
+                                    <button class="px-4 py-2 rounded-lg bg-blue-600 text-white font-bold text-sm shadow-md hover:bg-blue-700 transition-colors shrink-0">
                                         Join Call
                                     </button>
                                 </div>
@@ -367,7 +368,6 @@
         const themeIcon = document.getElementById('theme-icon');
         const htmlElement = document.documentElement;
         
-        // Initialize Theme
         const currentTheme = localStorage.getItem('theme') || 'light';
         htmlElement.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') {
@@ -395,16 +395,24 @@
 
         if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
         
-        // -- RTL Toggle Logic --
+        // -- RTL Logic --
         const rtlToggleBtn = document.getElementById('rtl-toggle-btn');
+        const rtlIcon = document.getElementById('rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        if (currentDir === 'rtl' && rtlIcon) {
+            rtlIcon.className = 'fas fa-align-left text-sm sm:text-base';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            if (rtlIcon) {
+                rtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm sm:text-base' : 'fas fa-align-right text-sm sm:text-base';
+            }
         }
         
         if (rtlToggleBtn) rtlToggleBtn.addEventListener('click', toggleRTL);
@@ -433,9 +441,8 @@
         });
         if(sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
-        // Handle resizing window to clean up mobile classes
         window.addEventListener('resize', () => {
-            if(window.innerWidth >= 1024) { // lg breakpoint
+            if(window.innerWidth >= 1024) { 
                 sidebar.classList.remove('-translate-x-full');
                 sidebarOverlay.classList.add('hidden');
             } else {
@@ -443,25 +450,21 @@
             }
         });
         
-        // Initial setup for sidebar on load based on width
         if(window.innerWidth < 1024) {
             sidebar.classList.add('-translate-x-full');
         }
 
         // --- TAB SWITCHING LOGIC ---
         function switchTab(tabId) {
-            // Update active states on sidebar buttons
             document.querySelectorAll('.sidebar-link').forEach(btn => {
                 btn.classList.remove('active');
             });
             document.getElementById('tab-' + tabId).classList.add('active');
 
-            // Close mobile menu if open after selection
             if(window.innerWidth < 1024) {
                 closeSidebar();
             }
 
-            // Get layout elements
             const metrics = document.getElementById('metrics-section');
             const grid = document.getElementById('dynamic-grid');
             const alerts = document.getElementById('alerts-section');
@@ -471,48 +474,39 @@
 
             if (tabId === 'overview') {
                 desc.innerText = "Here is what is happening across your fitness ecosystem today.";
-                
                 metrics.classList.remove('hidden');
                 grid.classList.remove('hidden');
                 grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-300';
                 alerts.classList.remove('hidden');
                 schedule.classList.remove('hidden');
                 management.classList.remove('hidden');
-            
             } else if (tabId === 'metrics') {
                 desc.innerText = "View your high-level platform performance and revenue metrics.";
-                
                 metrics.classList.remove('hidden');
                 grid.classList.add('hidden');
                 alerts.classList.add('hidden');
                 schedule.classList.add('hidden');
                 management.classList.add('hidden');
-            
             } else if (tabId === 'alerts') {
                 desc.innerText = "Stay updated on recent client check-ins and milestones.";
-                
                 metrics.classList.add('hidden');
                 grid.classList.remove('hidden');
-                grid.className = 'block transition-all duration-300'; // Full width single card
+                grid.className = 'block transition-all duration-300';
                 alerts.classList.remove('hidden');
                 schedule.classList.add('hidden');
                 management.classList.add('hidden');
-
             } else if (tabId === 'schedule') {
                 desc.innerText = "Manage your upcoming calls and appointments.";
-                
                 metrics.classList.add('hidden');
                 grid.classList.remove('hidden');
-                grid.className = 'block transition-all duration-300'; // Full width single card
+                grid.className = 'block transition-all duration-300';
                 alerts.classList.add('hidden');
                 schedule.classList.remove('hidden');
                 management.classList.add('hidden');
-
             } else if (tabId === 'management') {
                 desc.innerText = "Quickly execute administrative actions and manage the platform.";
-                
                 metrics.classList.add('hidden');
-                grid.classList.add('hidden'); // Hide the grid container completely
+                grid.classList.add('hidden');
                 alerts.classList.add('hidden');
                 schedule.classList.add('hidden');
                 management.classList.remove('hidden');

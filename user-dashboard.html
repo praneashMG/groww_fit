@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -39,20 +39,22 @@
             --nav-text: #1F2937;
             --border-color: #E2E8F0;
             --sidebar-bg: #FFFFFF;
+            --dropdown-bg: #FFFFFF;
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2A3A;      /* Increased red intensity for emphasis */
             --secondary-color: #F59E0B;    
-            --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
+            --bg-color: #121212;           /* Dark grey/black background */
+            --bg-alt: #1A1A1A;             /* Slightly lighter dark grey */
+            --card-bg: #1E1E1E;            /* Dark grey for cards */
             --text-main: #CBD5E1;
             --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --navbar-bg: #000000;          /* Solid black */
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --sidebar-bg: #0F172A;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --sidebar-bg: #121212;         /* Match bg-color */
+            --dropdown-bg: #1E1E1E;        /* Added missing dropdown bg for dark mode */
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -152,7 +154,7 @@
                 <i class="fas fa-moon text-sm sm:text-base" id="theme-icon"></i>
             </button>
             <button class="w-8 h-8 sm:w-10 sm:h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 cursor-pointer" id="rtl-toggle-btn" title="Toggle RTL">
-                <i class="fas fa-language text-sm sm:text-base"></i>
+                <i class="fas fa-align-right text-sm sm:text-base" id="rtl-icon"></i>
             </button>
             <a href="login.html" class="bg-primary text-white px-3 sm:px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 shadow-md flex items-center gap-2 border border-transparent ml-1 sm:ml-0">
                 <i class="fas fa-sign-out-alt"></i> <span class="hidden sm:inline">Logout</span>
@@ -397,16 +399,24 @@
 
         if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
         
-        // -- RTL Toggle Logic --
+        // -- UPDATED RTL Toggle Logic --
         const rtlToggleBtn = document.getElementById('rtl-toggle-btn');
+        const rtlIcon = document.getElementById('rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        if (currentDir === 'rtl' && rtlIcon) {
+            rtlIcon.className = 'fas fa-align-left text-sm sm:text-base';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            if (rtlIcon) {
+                rtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm sm:text-base' : 'fas fa-align-right text-sm sm:text-base';
+            }
         }
         
         if (rtlToggleBtn) rtlToggleBtn.addEventListener('click', toggleRTL);

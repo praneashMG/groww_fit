@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -41,19 +41,18 @@
             --dropdown-bg: #FFFFFF;
         }
         
-        /* Dark mode updated to true black/grey instead of blue */
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2E43;      /* Increased intensity red for emphasis */
             --secondary-color: #F59E0B;     
-            --bg-color: #000000;
-            --bg-alt: #0a0a0a;   
-            --card-bg: #171717;
-            --text-main: #D4D4D4;
-            --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --bg-color: #000000;           /* Pure black background */
+            --bg-alt: #121212;             /* Dark grey alt background */
+            --card-bg: #1C1C1C;            /* Dark grey for cards */
+            --text-main: #D1D5DB;          /* Adjusted text color for better contrast */
+            --text-heading: #FFFFFF;
+            --navbar-bg: #000000;          /* Pure black navbar */
             --nav-text: #F8FAFC;
-            --border-color: #262626;
-            --dropdown-bg: #171717;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --dropdown-bg: #1C1C1C;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -201,13 +200,13 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -234,7 +233,7 @@
                         <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                     </button>
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
                         <i class="fas fa-user text-sm"></i>
@@ -291,7 +290,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -304,7 +303,7 @@
         <div class="container mx-auto px-4 w-full h-full flex items-center py-8">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
                 <div class="fade-in-up order-2 lg:order-1 text-center lg:text-left">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block text-center w-full">Achieve Your Goals</span>
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4 block text-center lg:text-left w-full">Achieve Your Goals</span>
                     
                     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight text-heading-theme text-center lg:text-left drop-shadow-lg">
                         Fitness Made <br/> <span class="text-primary">Simple & Effective</span>
@@ -503,7 +502,8 @@
                 </div>
                 
                 <div class="order-1 lg:order-2">
-                    <span class="text-primary font-bold tracking-wider uppercase text-sm block text-center w-full mb-2">Fuel Your Body</span>
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm block text-left w-full mb-2">Fuel Your Body</span>
+                    
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-6 mt-2 text-heading-theme">Nutrition Made Simple</h2>
                     <p class="text-lg opacity-80 mb-8 text-body-theme">
                         You can't out-train a bad diet. Our integrated macro tracker and personalized meal plans remove the guesswork from your kitchen.
@@ -722,17 +722,33 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- FIX: Updated RTL Logic with dynamic icon switching --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        // Set initial icon state based on saved direction
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            // Switch icons: fa-align-left for RTL, fa-align-right for LTR
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
@@ -774,11 +790,11 @@
 
         // Active State Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            const currentPath = window.location.pathname.split('/').pop() || 'home2.html';
             
             document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
                 const href = link.getAttribute('href');
-                if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+                if (href === currentPath || (currentPath === '' && href === 'home2.html')) {
                     link.classList.add('active');
                     const parent = link.closest('.dropdown');
                     if(parent) parent.querySelector('.nav-link').classList.add('active');

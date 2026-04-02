@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,17 +42,17 @@
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2A3A;      /* Increased red intensity */
             --secondary-color: #F59E0B;     
-            --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
+            --bg-color: #121212;           /* Dark grey/black */
+            --bg-alt: #1A1A1A;             /* Slightly lighter dark grey */
+            --card-bg: #1E1E1E;            /* Card background */
             --text-main: #CBD5E1;
             --text-heading: #F8FAFC;
             --navbar-bg: #000000;
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --dropdown-bg: #111827;
+            --border-color: #333333;       /* Neutral border */
+            --dropdown-bg: #1E1E1E;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -153,7 +153,7 @@
             .mobile-menu-button { display: none !important; }
         }
 
-        /* --- FIXED: Tab Navigation Styles --- */
+        /* --- Tab Navigation Styles --- */
         .tab-btn {
             background-color: var(--card-bg);
             color: var(--text-main);
@@ -171,11 +171,42 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        /* FAQ Accordion Specific Styles */
-        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
-        .faq-button.active .faq-icon-container { background-color: var(--primary-color) !important; color: white !important; }
-        .faq-button.active .faq-icon { transform: rotate(180deg); }
-        .faq-button.active span { color: var(--primary-color); }
+        /* --- FIX: FAQ Accordion Specific Styles --- */
+        .faq-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-in-out; 
+        }
+        .faq-icon-container {
+            background-color: rgba(230, 57, 70, 0.1);
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        [data-theme="dark"] .faq-icon-container {
+            background-color: rgba(255, 42, 58, 0.15); /* Adjusted for dark mode red */
+        }
+        .faq-text {
+            transition: color 0.3s ease;
+        }
+        .faq-button:hover .faq-icon-container,
+        .faq-button.active .faq-icon-container { 
+            background-color: var(--primary-color) !important; 
+            color: #FFFFFF !important; 
+        }
+        .faq-button:hover .faq-text,
+        .faq-button.active .faq-text { 
+            color: var(--primary-color) !important; 
+        }
+        /* Anti-blur rendering fix */
+        .faq-icon {
+            transition: transform 0.4s ease;
+            transform: translateZ(0); 
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        .faq-button.active .faq-icon { 
+            transform: rotate(180deg) translateZ(0); 
+        }
     </style>
 </head>
 <body>
@@ -226,13 +257,13 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -258,12 +289,15 @@
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-theme-toggle" title="Toggle Dark/Light Mode">
                         <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                     </button>
+                    
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
+                    
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
                         <i class="fas fa-user text-sm"></i>
                     </a>
+                    
                     <button id="close-mobile-menu" class="text-heading-theme text-2xl ml-1 transition-transform active:scale-90">
                         <i class="fas fa-times"></i>
                     </button>
@@ -316,7 +350,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -326,18 +360,25 @@
     </div>
 
     <section class="h-[100dvh] w-full flex items-center justify-center pt-[80px] pb-6 bg-cover bg-center bg-no-repeat relative overflow-hidden border-b border-theme" style="background-image: url('Images/Faq.jpg');">
-        <div class="absolute inset-0 bg-black/65 z-0"></div>
+    
+    <div class="absolute inset-0 bg-black/65 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
         
-        <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
-            <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-4 drop-shadow-md">Help Center</span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white leading-tight drop-shadow-lg">
-                Frequently Asked <span class="text-primary">Questions</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium">
-                Got a question? We're here to help. Browse through our most common queries regarding programs, nutrition, app features, and billing.
-            </p>
-        </div>
-    </section>
+        <span class="block w-full text-center mx-auto text-white font-bold tracking-wider uppercase text-sm mb-4 drop-shadow-md">
+            Help Center
+        </span>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white leading-tight drop-shadow-lg">
+            Frequently Asked <span class="text-primary">Questions</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium">
+            Got a question? We're here to help. Browse through our most common queries regarding programs, nutrition, app features, and billing.
+        </p>
+
+    </div>
+</section>
 
     <section class="py-16 md:py-24 bg-theme-alt">
         <div class="container mx-auto px-4 max-w-4xl">
@@ -358,11 +399,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">What exactly is CoreFit?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">What exactly is CoreFit?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -370,11 +411,11 @@
                         </div>
                     </div>
                     
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Is CoreFit suitable for absolute beginners?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Is CoreFit suitable for absolute beginners?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -382,11 +423,11 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">How do I reset my password?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">How do I reset my password?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -403,11 +444,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Do I need a gym membership to use your programs?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Do I need a gym membership to use your programs?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -415,11 +456,11 @@
                         </div>
                     </div>
                     
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">How long do the workouts typically take?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">How long do the workouts typically take?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -436,11 +477,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">How do you calculate my macros?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">How do you calculate my macros?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -448,11 +489,11 @@
                         </div>
                     </div>
                     
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Do you provide vegan or vegetarian meal plans?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Do you provide vegan or vegetarian meal plans?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -469,11 +510,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">How does the 1-on-1 Elite Coaching work?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">How does the 1-on-1 Elite Coaching work?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -481,11 +522,11 @@
                         </div>
                     </div>
                     
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Can I change my coach if it's not a good fit?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Can I change my coach if it's not a good fit?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -493,11 +534,11 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">How do I find an accountability partner?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">How do I find an accountability partner?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -505,11 +546,11 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Are the community forums moderated?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Are the community forums moderated?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -526,11 +567,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Does CoreFit sync with Apple Watch or Fitbit?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Does CoreFit sync with Apple Watch or Fitbit?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -538,11 +579,11 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">What are the minimum system requirements for the app?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">What are the minimum system requirements for the app?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -550,11 +591,11 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Can I use the app completely offline?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Can I use the app completely offline?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -571,11 +612,11 @@
                 </div>
                 
                 <div class="space-y-4 text-left">
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Can I cancel my subscription at any time?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Can I cancel my subscription at any time?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -583,11 +624,11 @@
                         </div>
                     </div>
                     
-                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group-faq">
-                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none group" onclick="toggleFAQ(this)">
-                            <span class="font-bold text-heading-theme text-lg pr-4 group-hover:text-primary transition-colors">Do you offer refunds?</span>
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300 shrink-0 faq-icon-container">
-                                <i class="fas fa-chevron-down transition-transform duration-400 faq-icon"></i>
+                    <div class="bg-card-theme border border-theme rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                        <button class="faq-button w-full text-left p-6 flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-bold text-heading-theme text-lg pr-4 faq-text">Do you offer refunds?</span>
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 faq-icon-container">
+                                <i class="fas fa-chevron-down faq-icon"></i>
                             </div>
                         </button>
                         <div class="faq-content px-6">
@@ -853,17 +894,33 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- FIX: RTL Logic with dynamic icon switching --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        // Set initial icon state based on saved direction
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            // Switch icons: fa-align-left for RTL, fa-align-right for LTR
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);

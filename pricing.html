@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,17 +42,17 @@
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2A3A;      /* Increased red intensity for emphasis */
             --secondary-color: #F59E0B;     
-            --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
+            --bg-color: #121212;           /* Dark grey/black background */
+            --bg-alt: #1A1A1A;             /* Slightly lighter dark grey */
+            --card-bg: #1E1E1E;            /* Dark grey for cards */
             --text-main: #CBD5E1;
             --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --navbar-bg: #000000;          /* Solid black for navbar */
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --dropdown-bg: #111827;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --dropdown-bg: #1E1E1E;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -150,6 +150,17 @@
             .navbar-right-desktop { display: flex !important; }
             .mobile-menu-button { display: none !important; }
         }
+
+        /* FAQ Accordion Transitions */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-item.active .accordion-content {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -200,13 +211,13 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -233,7 +244,7 @@
                         <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                     </button>
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
                         <i class="fas fa-user text-sm"></i>
@@ -268,7 +279,7 @@
                 <a href="blog.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
                     <span><i class="fas fa-book-open mr-2 text-primary"></i> Blog</span>
                 </a>
-                <a href="pricing.html" class="flex items-center justify-between w-full text-primary text-lg font-bold py-3 no-underline">
+                <a href="pricing.html" class="flex items-center justify-between w-full text-heading-theme text-primary text-lg font-bold py-3 no-underline">
                     <span><i class="fas fa-tags mr-2 text-primary"></i> Pricing</span>
                 </a>
                 <a href="faq.html" class="flex items-center justify-between w-full text-heading-theme text-lg font-medium py-3 no-underline">
@@ -290,7 +301,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -311,7 +322,7 @@
                 No hidden fees. No long-term contracts. Choose the plan that fits your fitness goals and start transforming today.
             </p>
             
-            <div class="inline-flex items-center bg-white dark:bg-[#0F172A] border-2 border-white/20 p-1.5 rounded-xl shadow-2xl relative z-10">
+            <div class="inline-flex items-center bg-white dark:bg-[#1E1E1E] border-2 border-white/20 p-1.5 rounded-xl shadow-2xl relative z-10">
                 <button id="btn-monthly" class="px-6 py-2.5 rounded-lg font-black text-white bg-primary shadow-lg transition-all text-sm md:text-base">Monthly</button>
                 <button id="btn-annually" class="px-6 py-2.5 rounded-lg font-bold text-gray-800 dark:text-gray-200 hover:text-primary transition-all text-sm md:text-base">Annually <span class="text-secondary ml-1">-20%</span></button>
             </div>
@@ -482,23 +493,48 @@
                 <h2 class="text-3xl md:text-4xl font-black text-heading-theme text-center">Pricing FAQs</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
-                    <h4 class="font-bold text-heading-theme text-lg mb-2">Can I switch plans later?</h4>
-                    <p class="text-body-theme opacity-80 text-sm">Absolutely. You can upgrade to Elite or downgrade to Basic at any time from your account settings. Billing will be prorated automatically.</p>
+            <div class="max-w-3xl mx-auto space-y-4">
+                
+                <div class="accordion-item bg-card-theme rounded-2xl border border-theme shadow-sm overflow-hidden">
+                    <button class="accordion-header w-full flex justify-between items-center p-6 bg-transparent border-0 cursor-pointer focus:outline-none transition-colors hover:bg-theme-main">
+                        <h4 class="font-bold text-heading-theme text-lg text-left m-0 pr-4">Can I switch plans later?</h4>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300 accordion-icon text-lg"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-body-theme opacity-80 text-sm md:text-base px-6 pb-6 m-0">Absolutely. You can upgrade to Elite or downgrade to Basic at any time from your account settings. Billing will be prorated automatically.</p>
+                    </div>
                 </div>
-                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
-                    <h4 class="font-bold text-heading-theme text-lg mb-2">How does the 7-day free trial work?</h4>
-                    <p class="text-body-theme opacity-80 text-sm">When you sign up for Pro, you won't be charged for the first 7 days. You have full access to all features. Cancel before day 8 to avoid charges.</p>
+
+                <div class="accordion-item bg-card-theme rounded-2xl border border-theme shadow-sm overflow-hidden">
+                    <button class="accordion-header w-full flex justify-between items-center p-6 bg-transparent border-0 cursor-pointer focus:outline-none transition-colors hover:bg-theme-main">
+                        <h4 class="font-bold text-heading-theme text-lg text-left m-0 pr-4">How does the 7-day free trial work?</h4>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300 accordion-icon text-lg"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-body-theme opacity-80 text-sm md:text-base px-6 pb-6 m-0">When you sign up for Pro, you won't be charged for the first 7 days. You have full access to all features. Cancel before day 8 to avoid charges.</p>
+                    </div>
                 </div>
-                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
-                    <h4 class="font-bold text-heading-theme text-lg mb-2">Do I need gym equipment?</h4>
-                    <p class="text-body-theme opacity-80 text-sm">No! While we have advanced gym programs, we also offer comprehensive bodyweight and dumbbell-only plans perfect for home workouts.</p>
+
+                <div class="accordion-item bg-card-theme rounded-2xl border border-theme shadow-sm overflow-hidden">
+                    <button class="accordion-header w-full flex justify-between items-center p-6 bg-transparent border-0 cursor-pointer focus:outline-none transition-colors hover:bg-theme-main">
+                        <h4 class="font-bold text-heading-theme text-lg text-left m-0 pr-4">Do I need gym equipment?</h4>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300 accordion-icon text-lg"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-body-theme opacity-80 text-sm md:text-base px-6 pb-6 m-0">No! While we have advanced gym programs, we also offer comprehensive bodyweight and dumbbell-only plans perfect for home workouts.</p>
+                    </div>
                 </div>
-                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
-                    <h4 class="font-bold text-heading-theme text-lg mb-2">Is the Elite coaching strictly online?</h4>
-                    <p class="text-body-theme opacity-80 text-sm">Yes. The Elite plan pairs you with a certified coach through our app. You will receive customized daily feedback, form checks via video, and direct messaging.</p>
+
+                <div class="accordion-item bg-card-theme rounded-2xl border border-theme shadow-sm overflow-hidden">
+                    <button class="accordion-header w-full flex justify-between items-center p-6 bg-transparent border-0 cursor-pointer focus:outline-none transition-colors hover:bg-theme-main">
+                        <h4 class="font-bold text-heading-theme text-lg text-left m-0 pr-4">Is the Elite coaching strictly online?</h4>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300 accordion-icon text-lg"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-body-theme opacity-80 text-sm md:text-base px-6 pb-6 m-0">Yes. The Elite plan pairs you with a certified coach through our app. You will receive customized daily feedback, form checks via video, and direct messaging.</p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -598,7 +634,7 @@
     </button>
 
     <script>
-        // -- Dynamic Pricing Toggle Logic (Updated for High Visibility) --
+        // -- Dynamic Pricing Toggle Logic --
         const btnMonthly = document.getElementById('btn-monthly');
         const btnAnnually = document.getElementById('btn-annually');
         
@@ -612,38 +648,32 @@
 
         if(btnMonthly && btnAnnually) {
             btnMonthly.addEventListener('click', () => {
-                // Update Button Styles
                 btnMonthly.classList.add('bg-primary', 'text-white', 'shadow-lg', 'font-black');
                 btnMonthly.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'font-bold');
                 
                 btnAnnually.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'font-black');
                 btnAnnually.classList.add('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'font-bold');
                 
-                // Update Prices (Monthly)
                 priceBasic.innerText = '$9.99';
                 pricePro.innerText = '$19.99';
                 priceElite.innerText = '$99.99';
                 
-                // Update Billing Cycles
                 cycleBasic.innerText = '/mo';
                 cyclePro.innerText = '/mo';
                 cycleElite.innerText = '/mo';
             });
 
             btnAnnually.addEventListener('click', () => {
-                // Update Button Styles
                 btnAnnually.classList.add('bg-primary', 'text-white', 'shadow-lg', 'font-black');
                 btnAnnually.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'font-bold');
                 
                 btnMonthly.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'font-black');
                 btnMonthly.classList.add('text-gray-800', 'dark:text-gray-200', 'hover:text-primary', 'font-bold');
                 
-                // Update Prices (Annually - 20% off equivalent)
                 priceBasic.innerText = '$7.99';
                 pricePro.innerText = '$15.99';
                 priceElite.innerText = '$79.99';
                 
-                // Update Billing Cycles
                 cycleBasic.innerText = '/mo, billed yearly';
                 cyclePro.innerText = '/mo, billed yearly';
                 cycleElite.innerText = '/mo, billed yearly';
@@ -657,7 +687,6 @@
         const mobileThemeIcon = document.getElementById('mobile-theme-icon');
         const htmlElement = document.documentElement;
         
-        // Initialize Theme
         const currentTheme = localStorage.getItem('theme') || 'light';
         htmlElement.setAttribute('data-theme', currentTheme);
         if (currentTheme === 'dark') {
@@ -690,23 +719,37 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- RTL Logic --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
         if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
 
-        // Dropdowns & Menu
+        // -- Dropdowns & Menu --
         function toggleDesktopDropdown(id) {
             document.querySelectorAll('.dropdown').forEach(d => {
                 if(d.id !== id) d.classList.remove('active');
@@ -724,7 +767,7 @@
             }
         });
 
-        // Mobile Menu
+        // -- Mobile Menu --
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMobileMenu = document.getElementById('close-mobile-menu');
@@ -740,7 +783,7 @@
             });
         }
 
-        // Active State Logic
+        // -- Active State Logic --
         document.addEventListener('DOMContentLoaded', () => {
             const currentPath = window.location.pathname.split('/').pop() || 'pricing.html';
             
@@ -754,7 +797,34 @@
             });
         });
 
-        // Scroll Top
+        // -- FAQ Accordion Logic (NEW) --
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            const content = item.querySelector('.accordion-content');
+            const icon = item.querySelector('.accordion-icon');
+
+            header.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+
+                // Close all other accordions
+                accordionItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                    otherItem.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                });
+
+                // Toggle the clicked accordion
+                if (!isOpen) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // -- Scroll Top --
         const scrollTopBtn = document.getElementById('scroll-top');
         window.addEventListener('scroll', () => {
             scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300);

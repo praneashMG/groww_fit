@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -42,17 +42,17 @@
         }
         
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2E43;      /* Increased intensity red for emphasis */
             --secondary-color: #F59E0B;     
-            --bg-color: #020617;
-            --bg-alt: #0F172A;   
-            --card-bg: #1E293B;
-            --text-main: #CBD5E1;
-            --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --bg-color: #000000;           /* Pure black background */
+            --bg-alt: #121212;             /* Dark grey alt background */
+            --card-bg: #1C1C1C;            /* Dark grey for cards */
+            --text-main: #D1D5DB;          /* Adjusted text color for better contrast */
+            --text-heading: #FFFFFF;
+            --navbar-bg: #000000;          /* Pure black navbar */
             --nav-text: #F8FAFC;
-            --border-color: #334155;
-            --dropdown-bg: #111827;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --dropdown-bg: #1C1C1C;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,13 +200,13 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -232,12 +232,15 @@
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-theme-toggle" title="Toggle Dark/Light Mode">
                         <i class="fas fa-moon text-sm" id="mobile-theme-icon"></i>
                     </button>
+                    
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
+                    
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
                         <i class="fas fa-user text-sm"></i>
                     </a>
+                    
                     <button id="close-mobile-menu" class="text-heading-theme text-2xl ml-1 transition-transform active:scale-90">
                         <i class="fas fa-times"></i>
                     </button>
@@ -290,7 +293,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -300,61 +303,67 @@
     </div>
 
     <section class="h-[100dvh] w-full flex items-center justify-center pt-[80px] pb-6 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('Images/contact.jpg');">
-        <div class="absolute inset-0 bg-black/65 z-0"></div>
+    
+    <div class="absolute inset-0 bg-black/65 z-0"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
         
-        <div class="container mx-auto px-4 relative z-10 fade-in-up text-center">
-            <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-4 drop-shadow-md">Get In Touch</span>
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white leading-tight drop-shadow-lg">
-                Contact <span class="text-primary">CoreFit</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium">
-                Have a question about our programs, need technical support, or want to explore partnership opportunities? We're here to help.
-            </p>
-        </div>
-    </section>
+        <span class="block w-full text-center mx-auto text-white font-bold tracking-wider uppercase text-sm mb-4 drop-shadow-md">
+            Get In Touch
+        </span>
 
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 text-white leading-tight drop-shadow-lg">
+            Contact <span class="text-primary">CoreFit</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md font-medium">
+            Have a question about our programs, need technical support, or want to explore partnership opportunities? We're here to help.
+        </p>
+
+    </div>
+</section>
     <section class="py-16 md:py-24 bg-theme-alt">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
                 
-                <div class="bg-card-theme p-8 md:p-10 rounded-3xl border border-theme shadow-lg flex flex-col items-center text-center">
+                <div class="bg-card-theme p-6 sm:p-10 rounded-3xl border border-theme shadow-lg flex flex-col items-center text-center">
                     <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Collaborate</span>
                     <h2 class="text-3xl font-black text-heading-theme mb-8 w-full text-center">Work With CoreFit</h2>
                     <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
                         We are always looking to expand our network. Whether you are a fitness creator, a potential corporate partner, or looking to join our team, we would love to hear from you.
                     </p>
 
-                    <div class="space-y-6 w-full text-left">
-                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-5">
+                    <div class="space-y-4 sm:space-y-6 w-full text-left">
+                        <div class="flex items-start bg-theme-alt p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-handshake"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Partnerships</h4>
-                                <p class="text-body-theme text-sm mb-2">Interested in brand collaborations?</p>
-                                <a href="mailto:partners@corefit.com" class="text-primary font-bold hover:underline">partners@corefit.com</a>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Partnerships</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">Interested in brand collaborations?</p>
+                                <a href="mailto:partners@corefit.com" class="text-primary font-bold hover:underline break-all text-sm sm:text-base">partners@corefit.com</a>
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl shrink-0 mr-5">
+                        <div class="flex items-start bg-theme-alt p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-briefcase"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Careers</h4>
-                                <p class="text-body-theme text-sm mb-2">Join our team of elite coaches and devs.</p>
-                                <a href="#" class="text-secondary font-bold hover:underline">View Open Roles</a>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Careers</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">Join our team of elite coaches and devs.</p>
+                                <a href="#" class="text-secondary font-bold hover:underline text-sm sm:text-base">View Open Roles</a>
                             </div>
                         </div>
                         
-                        <div class="flex items-start bg-theme-alt p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-xl shrink-0 mr-5">
+                        <div class="flex items-start bg-theme-alt p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-newspaper"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Press & Media</h4>
-                                <p class="text-body-theme text-sm mb-2">For interviews and media inquiries.</p>
-                                <a href="mailto:press@corefit.com" class="text-blue-500 font-bold hover:underline">press@corefit.com</a>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Press & Media</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">For interviews and media inquiries.</p>
+                                <a href="mailto:press@corefit.com" class="text-blue-500 font-bold hover:underline break-all text-sm sm:text-base">press@corefit.com</a>
                             </div>
                         </div>
                     </div>
@@ -367,37 +376,37 @@
                         Need an immediate response? Reach out through any of our direct channels below. Our support team typically responds within 2 hours during normal business hours.
                     </p>
 
-                    <div class="space-y-6 w-full text-left">
-                        <div class="flex items-start bg-card-theme p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-5">
+                    <div class="space-y-4 sm:space-y-6 w-full text-left">
+                        <div class="flex items-start bg-card-theme p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Email Support</h4>
-                                <p class="text-body-theme text-sm mb-2">For technical issues and general inquiries.</p>
-                                <a href="mailto:support@corefit.com" class="text-primary font-bold hover:underline">support@corefit.com</a>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Email Support</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">For technical issues and general inquiries.</p>
+                                <a href="mailto:support@corefit.com" class="text-primary font-bold hover:underline break-all text-sm sm:text-base">support@corefit.com</a>
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-card-theme p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-xl shrink-0 mr-5">
+                        <div class="flex items-start bg-card-theme p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-phone-alt"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Phone</h4>
-                                <p class="text-body-theme text-sm mb-2">Available Mon-Fri, 9am - 5pm EST.</p>
-                                <a href="tel:+18005550199" class="text-secondary font-bold hover:underline">+1 (800) 555-0199</a>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Phone</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">Available Mon-Fri, 9am - 5pm EST.</p>
+                                <a href="tel:+18005550199" class="text-secondary font-bold hover:underline text-sm sm:text-base">+1 (800) 555-0199</a>
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-card-theme p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
-                            <div class="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-xl shrink-0 mr-5">
+                        <div class="flex items-start bg-card-theme p-4 sm:p-6 rounded-2xl border border-theme shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-500 text-lg sm:text-xl shrink-0 mr-3 sm:mr-5">
                                 <i class="fas fa-comments"></i>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-heading-theme text-lg mb-1">Live Chat</h4>
-                                <p class="text-body-theme text-sm mb-2">Log into the CoreFit app to access instant 24/7 AI and human chat support.</p>
-                                <span class="text-blue-500 font-bold cursor-pointer hover:underline">Open App Chat</span>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">Live Chat</h4>
+                                <p class="text-body-theme text-xs sm:text-sm mb-2">Log into the CoreFit app to access instant 24/7 AI and human chat support.</p>
+                                <span class="text-blue-500 font-bold cursor-pointer hover:underline text-sm sm:text-base">Open App Chat</span>
                             </div>
                         </div>
                     </div>
@@ -417,29 +426,29 @@
                         <h3 class="text-white font-black text-2xl">Talk to an Expert</h3>
                     </div>
                 </div>
-                <div class="lg:w-3/5 p-8 md:p-12 flex flex-col items-center text-center">
+                <div class="lg:w-3/5 p-6 sm:p-8 md:p-12 flex flex-col items-center text-center">
                     <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Level Up</span>
                     <h2 class="text-3xl font-black text-heading-theme mb-4 w-full">Coach Consultation Booking</h2>
-                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full">
+                    <p class="text-body-theme opacity-80 mb-8 leading-relaxed w-full text-sm sm:text-base">
                         Not sure which program is right for you? Book a free 15-minute discovery call with one of our certified trainers. We'll discuss your goals, injury history, and daily routine to map out the perfect starting point.
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-4 mb-8 w-full max-w-md mx-auto text-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 w-full max-w-md mx-auto text-left">
                         <div class="flex items-center text-heading-theme font-bold text-sm">
-                            <i class="fas fa-video text-primary mr-3 text-lg"></i> Zoom Video Call
+                            <i class="fas fa-video text-primary mr-3 text-lg w-5 text-center"></i> Zoom Video Call
                         </div>
                         <div class="flex items-center text-heading-theme font-bold text-sm">
-                            <i class="far fa-clock text-primary mr-3 text-lg"></i> 15 Minutes
+                            <i class="far fa-clock text-primary mr-3 text-lg w-5 text-center"></i> 15 Minutes
                         </div>
                         <div class="flex items-center text-heading-theme font-bold text-sm">
-                            <i class="fas fa-bullseye text-primary mr-3 text-lg"></i> Goal Setting
+                            <i class="fas fa-bullseye text-primary mr-3 text-lg w-5 text-center"></i> Goal Setting
                         </div>
                         <div class="flex items-center text-heading-theme font-bold text-sm">
-                            <i class="fas fa-tag text-primary mr-3 text-lg"></i> 100% Free
+                            <i class="fas fa-tag text-primary mr-3 text-lg w-5 text-center"></i> 100% Free
                         </div>
                     </div>
                     
-                    <a href="#" class="inline-block bg-primary text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1 mx-auto">
+                    <a href="#" class="inline-block bg-primary text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg hover:bg-red-700 transition-colors hover:-translate-y-1 mx-auto text-sm sm:text-base">
                         <i class="far fa-calendar-alt mr-2"></i> Pick a Date & Time
                     </a>
                 </div>
@@ -458,12 +467,12 @@
                     </p>
 
                     <div class="flex items-start mb-8 text-left w-full max-w-md">
-                        <div class="w-12 h-12 bg-card-theme border border-theme rounded-full flex items-center justify-center text-primary text-xl shrink-0 mr-4 shadow-sm">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-card-theme border border-theme rounded-full flex items-center justify-center text-primary text-lg sm:text-xl shrink-0 mr-3 sm:mr-4 shadow-sm">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-heading-theme text-lg mb-1">CoreFit HQ</h4>
-                            <p class="text-body-theme text-sm leading-relaxed">
+                        <div class="min-w-0 flex-1">
+                            <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-1">CoreFit HQ</h4>
+                            <p class="text-body-theme text-xs sm:text-sm leading-relaxed">
                                 123 Fitness Avenue, Suite 400<br>
                                 Wellness District, NY 10001<br>
                                 United States
@@ -471,13 +480,13 @@
                         </div>
                     </div>
 
-                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm w-full max-w-md text-left">
-                        <h4 class="font-bold text-heading-theme text-lg mb-4 flex items-center">
+                    <div class="bg-card-theme p-4 sm:p-6 rounded-2xl border border-theme shadow-sm w-full max-w-md text-left">
+                        <h4 class="font-bold text-heading-theme text-base sm:text-lg mb-4 flex items-center">
                             <i class="far fa-clock text-primary mr-2"></i> Hours of Operation
                         </h4>
-                        <div class="space-y-3 text-sm text-body-theme">
+                        <div class="space-y-3 text-xs sm:text-sm text-body-theme">
                             <div class="flex justify-between border-b border-theme pb-2">
-                                <span class="font-medium">Monday - Friday</span>
+                                <span class="font-medium">Mon - Fri</span>
                                 <span class="font-bold text-heading-theme">9:00 AM - 6:00 PM EST</span>
                             </div>
                             <div class="flex justify-between border-b border-theme pb-2">
@@ -504,13 +513,13 @@
                             onmouseout="this.style.filter='grayscale(100%)'">
                     </iframe>
                     
-                    <div class="absolute bottom-6 left-6 right-6 bg-card-theme/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-theme flex items-center justify-between pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+                    <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-card-theme/90 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-lg border border-theme flex items-center justify-between pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
                         <div>
-                            <p class="font-bold text-heading-theme text-sm">CoreFit Studios</p>
-                            <p class="text-xs text-body-theme">New York, NY 10001</p>
+                            <p class="font-bold text-heading-theme text-xs sm:text-sm">CoreFit Studios</p>
+                            <p class="text-[10px] sm:text-xs text-body-theme">New York, NY 10001</p>
                         </div>
-                        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank" class="pointer-events-auto bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors shadow-md">
-                            <i class="fas fa-directions"></i>
+                        <a href="https://maps.google.com/?q=New+York,+NY" target="_blank" class="pointer-events-auto bg-primary text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors shadow-md">
+                            <i class="fas fa-directions text-xs sm:text-base"></i>
                         </a>
                     </div>
                 </div>
@@ -524,25 +533,25 @@
             <span class="block w-full text-center mx-auto text-primary font-bold tracking-wider uppercase text-sm mb-2">Connect With Us</span>
             <h2 class="text-3xl md:text-4xl font-black text-heading-theme mb-10 w-full text-center">Follow Our Journey</h2>
             
-            <div class="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
-                <a href="#" class="flex flex-col items-center justify-center w-32 h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-instagram text-4xl text-body-theme group-hover:text-[#E1306C] mb-3 transition-colors"></i>
-                    <span class="font-bold text-sm text-heading-theme">Instagram</span>
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-4xl mx-auto">
+                <a href="#" class="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <i class="fab fa-instagram text-3xl sm:text-4xl text-body-theme group-hover:text-[#E1306C] mb-2 sm:mb-3 transition-colors"></i>
+                    <span class="font-bold text-xs sm:text-sm text-heading-theme">Instagram</span>
                 </a>
                 
-                <a href="#" class="flex flex-col items-center justify-center w-32 h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-youtube text-4xl text-body-theme group-hover:text-[#FF0000] mb-3 transition-colors"></i>
-                    <span class="font-bold text-sm text-heading-theme">YouTube</span>
+                <a href="#" class="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <i class="fab fa-youtube text-3xl sm:text-4xl text-body-theme group-hover:text-[#FF0000] mb-2 sm:mb-3 transition-colors"></i>
+                    <span class="font-bold text-xs sm:text-sm text-heading-theme">YouTube</span>
                 </a>
 
-                <a href="#" class="flex flex-col items-center justify-center w-32 h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-tiktok text-4xl text-body-theme group-hover:text-black dark:group-hover:text-white mb-3 transition-colors"></i>
-                    <span class="font-bold text-sm text-heading-theme">TikTok</span>
+                <a href="#" class="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <i class="fab fa-tiktok text-3xl sm:text-4xl text-body-theme group-hover:text-black dark:group-hover:text-white mb-2 sm:mb-3 transition-colors"></i>
+                    <span class="font-bold text-xs sm:text-sm text-heading-theme">TikTok</span>
                 </a>
 
-                <a href="#" class="flex flex-col items-center justify-center w-32 h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
-                    <i class="fab fa-twitter text-4xl text-body-theme group-hover:text-[#1DA1F2] mb-3 transition-colors"></i>
-                    <span class="font-bold text-sm text-heading-theme">Twitter</span>
+                <a href="#" class="flex flex-col items-center justify-center w-28 h-28 sm:w-32 sm:h-32 bg-card-theme border border-theme rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-2 transition-all duration-300 group">
+                    <i class="fab fa-twitter text-3xl sm:text-4xl text-body-theme group-hover:text-[#1DA1F2] mb-2 sm:mb-3 transition-colors"></i>
+                    <span class="font-bold text-xs sm:text-sm text-heading-theme">Twitter</span>
                 </a>
             </div>
         </div>
@@ -665,17 +674,33 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- FIX: RTL Logic with dynamic icon switching --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        // Set initial icon state based on saved direction
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            // Switch icons: fa-align-left for RTL, fa-align-right for LTR
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);

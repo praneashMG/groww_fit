@@ -8,7 +8,7 @@
     
     <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.jpg">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -41,19 +41,18 @@
             --dropdown-bg: #FFFFFF;
         }
         
-        /* Dark mode updated to true black/grey instead of blue */
         [data-theme="dark"] {
-            --primary-color: #E63946;      
+            --primary-color: #FF2A3A;      /* Increased red intensity for emphasis */
             --secondary-color: #F59E0B;     
-            --bg-color: #000000;
-            --bg-alt: #0a0a0a;   
-            --card-bg: #171717;
-            --text-main: #D4D4D4;
+            --bg-color: #121212;           /* Dark grey/black background */
+            --bg-alt: #1A1A1A;             /* Slightly lighter dark grey */
+            --card-bg: #1E1E1E;            /* Dark grey for cards */
+            --text-main: #CBD5E1;
             --text-heading: #F8FAFC;
-            --navbar-bg: #000000;
+            --navbar-bg: #000000;          /* Solid black for navbar */
             --nav-text: #F8FAFC;
-            --border-color: #262626;
-            --dropdown-bg: #171717;
+            --border-color: #333333;       /* Neutral dark grey border */
+            --dropdown-bg: #1E1E1E;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -232,7 +231,7 @@
                     </div>
 
                     <a href="about.html" class="nav-link">About</a>
-                    <a href="Programs.html" class="nav-link">Programs</a>
+                    <a href="programs.html" class="nav-link">Programs</a>
                     <a href="nutrition.html" class="nav-link">Nutrition</a>
                     <a href="blog.html" class="nav-link">Blog</a>
                     <a href="pricing.html" class="nav-link">Pricing</a>
@@ -255,12 +254,12 @@
                         <i class="fas fa-moon" id="desktop-theme-icon"></i>
                     </button>
                     <button class="w-10 h-10 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-align-right" id="desktop-rtl-icon"></i>
                     </button>
                     <a href="login.html" class="text-heading-theme font-bold text-sm px-3 py-2 hover:text-primary transition-colors">
                         Login
                     </a>
-                    <a href="login.html?mode=signup" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
+                    <a href="register.html" class="bg-primary text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-red-700 hover:text-white shadow-lg flex items-center gap-2">
                         <i class="fas fa-user-plus"></i> Register
                     </a>
                 </div>
@@ -288,7 +287,7 @@
                     </button>
                     
                     <button class="w-8 h-8 nav-icon-btn rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-primary hover:text-white shrink-0 border-0 cursor-pointer" id="mobile-rtl-toggle" title="Toggle RTL">
-                        <i class="fas fa-language text-sm"></i>
+                        <i class="fas fa-align-right text-sm" id="mobile-rtl-icon"></i>
                     </button>
                     
                     <a href="login.html" class="bg-theme-alt text-heading-theme border border-theme w-8 h-8 rounded-lg flex items-center justify-center font-bold transition-all hover:bg-gray-200" title="Login">
@@ -347,7 +346,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-theme pt-6">
-                    <a href="login.html?mode=signup" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
+                    <a href="register.html" class="flex items-center justify-center w-full bg-primary text-white text-lg font-bold py-3.5 rounded-xl shadow-md transition-all hover:bg-red-700 active:scale-95">
                         <i class="fas fa-user-plus mr-2"></i> Register
                     </a>
                 </div>
@@ -356,32 +355,32 @@
         </div>
     </div>
 
-    <section class="h-[100dvh] w-full bg-primary pt-[80px] pb-6 flex items-center relative overflow-hidden">
+    <section class="min-h-[100dvh] w-full bg-primary pt-[90px] md:pt-[100px] lg:pt-[80px] pb-6 md:pb-8 lg:pb-6 flex items-center relative overflow-hidden">
         <div class="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#F59E0B" d="M42.7,-73.2C55.9,-67.1,67.6,-57.8,76.4,-46.3C85.2,-34.8,91.1,-21.1,89.9,-7.7C88.7,5.7,80.4,18.8,71.1,30.3C61.8,41.8,51.5,51.7,40.1,59.9C28.7,68.1,16.2,74.6,2.9,70.1C-10.4,65.6,-24.5,50.1,-37.8,38.6C-51.1,27.1,-63.6,19.6,-69.3,8.7C-75,-2.2,-73.9,-16.5,-66.2,-28.5C-58.5,-40.5,-44.2,-50.2,-30.2,-55.8C-16.2,-61.4,-2.5,-62.9,9.9,-78.2L42.7,-73.2Z" transform="translate(100 100)" />
             </svg>
         </div>
 
-        <div class="container mx-auto px-4 relative z-10 h-full flex items-center">
-            <div class="grid lg:grid-cols-2 gap-6 md:gap-12 items-center w-full">
+        <div class="container mx-auto px-4 relative z-10 h-full flex items-center py-6 lg:py-0">
+            <div class="grid lg:grid-cols-2 gap-6 md:gap-8 items-center w-full">
                 <div class="fade-in-up order-2 lg:order-1 flex flex-col justify-center">
-                    <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 md:mb-6 leading-tight text-white uppercase tracking-tight drop-shadow-lg">
+                    <h1 class="text-3xl sm:text-5xl md:text-5xl lg:text-7xl font-black mb-3 md:mb-4 leading-tight text-white uppercase tracking-tight drop-shadow-lg">
                         Start Your <br/> <span class="gradient-text">Fitness Journey</span>
                     </h1>
-                    <p class="text-sm sm:text-lg md:text-xl mb-5 md:mb-8 text-white font-medium drop-shadow-md">
+                    <p class="text-sm sm:text-lg md:text-lg mb-5 md:mb-6 text-white font-medium drop-shadow-md">
                         Transform your body and mind with world-class coaching, personalized workout plans, and cutting-edge app tracking.
                     </p>
                     <div class="flex flex-wrap gap-3">
                         <a href="#join" class="bg-secondary text-white px-5 py-2.5 md:px-8 md:py-4 rounded-lg font-bold transition-all duration-300 inline-block hover:bg-white hover:text-primary hover:-translate-y-0.5 text-xs md:text-base shadow-lg hover:shadow-secondary/50 uppercase tracking-wide">
-                            <i class="fas fa-fire mr-2"></i> Join GrowwFit
+                            <i class="fas fa-fire mr-2"></i> Join CoreFit
                         </a>
                         <a href="programs.html" class="bg-transparent text-white px-5 py-2.5 md:px-8 md:py-4 rounded-lg font-bold transition-all duration-300 border-2 border-white inline-block hover:bg-white hover:text-primary hover:-translate-y-0.5 text-xs md:text-base uppercase tracking-wide">
                             <i class="fas fa-dumbbell mr-2"></i> View Programs
                         </a>
                     </div>
                     
-                    <div class="mt-4 md:mt-8 inline-flex items-center space-x-4 md:space-x-6 text-white bg-black/20 backdrop-blur-md p-3 md:p-4 rounded-xl border border-white/20 shadow-lg w-fit">
+                    <div class="mt-6 md:mt-8 inline-flex items-center space-x-4 md:space-x-6 text-white bg-black/20 backdrop-blur-md p-3 md:p-4 rounded-xl border border-white/20 shadow-lg w-fit">
                         <div class="flex -space-x-2 md:-space-x-3">
                             <div class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-black flex items-center justify-center text-secondary font-bold border-2 border-white text-xs md:text-base"><i class="fas fa-star"></i></div>
                             <div class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-secondary flex items-center justify-center text-white font-bold border-2 border-white text-xs md:text-base"><i class="fas fa-check"></i></div>
@@ -395,7 +394,7 @@
                     
                 </div>
                 <div class="relative order-1 lg:order-2">
-                    <div class="w-full h-[35vh] sm:h-[45vh] md:h-[50vh] lg:h-[75vh] rounded-3xl overflow-hidden shadow-2xl relative border-4 border-white/20 bg-black/10">
+                    <div class="w-full h-[30vh] sm:h-[35vh] md:h-[40vh] lg:h-[75vh] rounded-3xl overflow-hidden shadow-2xl relative border-4 border-white/20 bg-black/10">
                         <img src="Images/home1.jpg" alt="Start Your Fitness Journey" class="w-full h-full object-cover rounded-3xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                         <div class="w-full h-full bg-black flex items-center justify-center" style="display: none;">
                             <i class="fas fa-dumbbell text-secondary text-5xl md:text-9xl pulse"></i>
@@ -640,7 +639,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12 md:mb-16">
                 <span class="block w-full text-center mx-auto text-white font-bold tracking-wider uppercase text-sm opacity-90">Technology Meets Fitness</span>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 mt-2 text-white">GrowwFit App Features</h2>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 mt-2 text-white">CoreFit App Features</h2>
                 <p class="text-base md:text-xl opacity-90 max-w-3xl mx-auto text-gray-100">
                     Everything you need to track progress, hit goals, and stay accountable—right in your pocket.
                 </p>
@@ -688,7 +687,7 @@
                 <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme relative flex flex-col h-full">
                     <i class="fas fa-quote-left text-4xl text-secondary/30 absolute top-6 left-6"></i>
                     <p class="text-body-theme italic mb-6 relative z-10 pt-6 flex-grow">
-                        "GrowwFit completely changed how I approach the gym. The structured fat loss program&macro tracker helped in 3 months without feeling starved."
+                        "CoreFit completely changed how I approach the gym. The structured fat loss program&macro tracker helped in 3 months without feeling starved."
                     </p>
                     <div class="flex items-center gap-4 border-t border-theme pt-4 mt-auto">
                         <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold shrink-0">JD</div>
@@ -723,7 +722,7 @@
         <div class="container mx-auto px-4 relative z-10 text-center">
             <h2 class="text-4xl md:text-5xl font-black mb-6 text-heading-theme">Ready to Transform?</h2>
             <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium text-body-theme">
-                Join the GrowwFit community today and get instant access to workout plans, macro tracking, and expert coaching.
+                Join the CoreFit community today and get instant access to workout plans, macro tracking, and expert coaching.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="login.html" class="bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(230,57,70,0.3)] flex items-center uppercase tracking-wide">
@@ -786,7 +785,7 @@
                 
                 <div>
                     <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">App Download</h3>
-                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Get the GrowwFit app on your device.</p>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Get the CoreFit app on your device.</p>
                     <div class="space-y-3">
                         <a href="#" class="flex items-center gap-3 bg-white/10 p-3 rounded-lg border border-white/10 hover:bg-white/20 transition">
                             <i class="fab fa-apple text-2xl text-white"></i>
@@ -807,7 +806,7 @@
             </div>
             
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-white">
-                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 GrowwFit. All rights reserved.</p>
+                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 CoreFit. All rights reserved.</p>
                 <div class="flex flex-wrap justify-center gap-4 md:gap-6">
                     <a href="#" class="hover:text-primary transition text-gray-300">Privacy Policy</a>
                     <a href="#" class="hover:text-primary transition text-gray-300">Terms of Service</a>
@@ -861,17 +860,33 @@
         if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
         if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
         
-        // Desktop RTL Toggle
+        // -- FIX: Updated RTL Logic with dynamic icon switching --
         const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const desktopRtlIcon = document.getElementById('desktop-rtl-icon');
         const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const mobileRtlIcon = document.getElementById('mobile-rtl-icon');
         const currentDir = localStorage.getItem('direction') || 'ltr';
         
         htmlElement.setAttribute('dir', currentDir);
+        
+        // Set initial icon state based on saved direction
+        if (currentDir === 'rtl') {
+            if (desktopRtlIcon) desktopRtlIcon.className = 'fas fa-align-left';
+            if (mobileRtlIcon) mobileRtlIcon.className = 'fas fa-align-left text-sm';
+        }
         
         function toggleRTL() {
             const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
             htmlElement.setAttribute('dir', direction);
             localStorage.setItem('direction', direction);
+            
+            // Switch icons: fa-align-left for RTL, fa-align-right for LTR
+            if (desktopRtlIcon) {
+                desktopRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left' : 'fas fa-align-right';
+            }
+            if (mobileRtlIcon) {
+                mobileRtlIcon.className = direction === 'rtl' ? 'fas fa-align-left text-sm' : 'fas fa-align-right text-sm';
+            }
         }
         
         if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
